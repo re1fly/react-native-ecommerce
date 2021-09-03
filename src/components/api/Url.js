@@ -1,5 +1,5 @@
-export const NGROK = 'ac44-103-225-151-50.ngrok.io';
-export const BASE_URL = 'http://ac44-103-225-151-50.ngrok.io/api/';
+export const NGROK = '660c-103-225-151-50.ngrok.io';
+export const BASE_URL = 'http://660c-103-225-151-50.ngrok.io/api/';
 
 
 export const GET_WOMEN_PRODUCTS = BASE_URL + 'women-clothes';

@@ -42,6 +42,7 @@ export default class HomeCarousel extends Component {
                     alignItems: 'center',
                     alignSelf: 'center',
                     justifyContent: 'center',
+                    backgroundColor: '#f1f1f1'
                 }}>
                 <SliderBox
                     images={this.state.images}

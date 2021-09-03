@@ -10,7 +10,6 @@ import {Drawer} from 'react-native-paper';
 import {stylesHome} from '../assets/Styles';
 
 
-
 const DrawerItem = () => {
     const [active, setActive] = React.useState('');
     return (
@@ -41,11 +40,11 @@ const HomeScreen = ({navigation}) => {
             <ScrollView showsVerticalScrollIndicator={false} style={{marginBottom: '20%'}}>
                 <View style={stylesHome.homeContainer}>
                     <SearchBar
-                        inputStyle={{backgroundColor: 'white'}}
+                        inputStyle={{backgroundColor: '#f1f1f1'}}
                         containerStyle={{
                             backgroundColor: 'white',
-                            marginRight: 30,
-                            marginLeft: 30,
+                            marginRight: 60,
+                            marginLeft: 60,
                             marginTop: 20,
                             marginBottom: 12,
                             padding: 0,
@@ -53,8 +52,8 @@ const HomeScreen = ({navigation}) => {
                             borderBottomColor: 'transparent',
                             borderTopColor: 'transparent',
                         }}
-                        leftIconContainerStyle={{backgroundColor: 'white'}}
-                        inputContainerStyle={{backgroundColor: 'white'}}
+                        leftIconContainerStyle={{backgroundColor: '#f1f1f1'}}
+                        inputContainerStyle={{backgroundColor: '#f1f1f1'}}
                         lightTheme={true}
                         placeholder="Search Products..."
                         onChangeText={updateSearch}
@@ -76,28 +75,34 @@ const HomeScreen = ({navigation}) => {
                             >
                                 <VStack>
                                     <Avatar size="md" style={stylesHome.thumbnail}
-                                            source={require('../assets/images/thumbnail/men.jpg')}
+                                            source={require('../assets/images/thumbnail/NikeMen.jpg')}
                                     />
+                                    <Text style={stylesHome.thumbnailText}>Men</Text>
                                 </VStack>
                                 <VStack onPress={() => console.warn('nice')}>
                                     <Avatar size="md" style={stylesHome.thumbnail}
-                                            source={require('../assets/images/thumbnail/women.jpg')}/>
+                                            source={require('../assets/images/thumbnail/NikeWomen.jpg')}/>
+                                    <Text style={stylesHome.thumbnailText}>Women</Text>
                                 </VStack>
                                 <VStack>
                                     <Avatar size="md" style={stylesHome.thumbnail}
-                                            source={require('../assets/images/thumbnail/kids.jpg')}/>
+                                            source={require('../assets/images/thumbnail/NikeKids.jpg')}/>
+                                    <Text style={stylesHome.thumbnailText}>Kids</Text>
                                 </VStack>
                                 <VStack>
                                     <Avatar size="md" style={stylesHome.thumbnail}
-                                            source={require('../assets/images/thumbnail/top.jpg')}/>
+                                            source={require('../assets/images/thumbnail/NikeTop.jpg')}/>
+                                    <Text style={stylesHome.thumbnailText}>Tops</Text>
                                 </VStack>
                                 <VStack>
                                     <Avatar size="md" style={stylesHome.thumbnail}
-                                            source={require('../assets/images/thumbnail/bottom.jpg')}/>
+                                            source={require('../assets/images/thumbnail/NikeBottom.jpg')}/>
+                                    <Text style={stylesHome.thumbnailText}>Bottoms</Text>
                                 </VStack>
                                 <VStack>
                                     <Avatar size="md" style={stylesHome.thumbnail}
-                                            source={require('../assets/images/thumbnail/acc.jpg')}/>
+                                            source={require('../assets/images/thumbnail/NikeAccessories.jpg')}/>
+                                    <Text style={stylesHome.thumbnailText}>Acc's</Text>
                                 </VStack>
 
                             </ScrollView>
@@ -121,7 +126,9 @@ export default function HomeStackScreen() {
     return (
         <HomeStack.Navigator screenOptions={{
             headerShown: false,
-            // contentStyle: {backgroundColor: 'white'},
+            contentStyle: {
+                backgroundColor: 'white',
+            },
         }}>
             <HomeStack.Screen name="Home" component={HomeScreen}/>
         </HomeStack.Navigator>

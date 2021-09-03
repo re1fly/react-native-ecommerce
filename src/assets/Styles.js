@@ -24,6 +24,11 @@ export const stylesHome = StyleSheet.create({
         borderWidth: 0.8,
         overflow: 'hidden',
     },
+    thumbnailText: {
+      alignSelf: 'center',
+        marginTop: 2,
+        fontSize: 12
+    },
     textNewArrivals: {
         fontWeight: '700',
         fontSize: 20,
@@ -48,7 +53,7 @@ export const stylesProducts = StyleSheet.create({
     },
     CardCategory: {
         marginBottom: '-7%',
-        backgroundColor: '#efefef',
+        backgroundColor: 'white',
     },
     CardTitle: {
         marginLeft: 10,
@@ -56,84 +61,78 @@ export const stylesProducts = StyleSheet.create({
     },
 });
 export const stylesProfile = StyleSheet.create({
-    headerBackgroundImage: {
-        paddingBottom: 20,
-        paddingTop: 45,
+    container: {
+        marginVertical: 20,
+        backgroundColor: 'transparent'
     },
-    headerContainer: {
-        position: 'absolute',
-        flex: 3,
-        width: '100%',
+    header:{
+        backgroundColor: "#E9ECF4",
+        borderTopRightRadius: 45,
+        borderTopLeftRadius: 45
+    },
+    headerContent:{
+        padding:20,
+        alignItems: 'center',
+    },
+    avatar: {
+        width: 140,
+        height: 140,
         borderRadius: 40,
+        marginBottom:10,
     },
-    headerColumn: {
+    name:{
+        fontSize:24,
+        color:"black",
+        fontWeight:'900',
+        textAlign: 'center'
+    },
+    userCityText: {
+        color: '#8a8a8a',
+        fontSize: 15,
+        fontWeight: '400',
+        textAlign: 'center',
+    },
+    userMemberText: {
+        color: '#8c8118',
+        fontSize: 12,
+        fontWeight: '600',
+        textAlign: 'center',
+        paddingVertical: 6,
+    },
+    userCityRow: {
         backgroundColor: 'transparent',
-        ...Platform.select({
-            ios: {
-                alignItems: 'center',
-                elevation: 1,
-                marginTop: -1,
-            },
-            android: {
-                alignItems: 'center',
-            },
-        }),
-    },
-    placeIcon: {
-        color: 'white',
-        fontSize: 26,
-    },
-    scroll: {
-        backgroundColor: '#FFF',
-    },
-    telContainer: {
-        backgroundColor: '#FFF',
-        flex: 1,
-        paddingTop: 30,
     },
     userAddressRow: {
         alignItems: 'center',
         flexDirection: 'row',
     },
-    userCityRow: {
-        backgroundColor: 'transparent',
+    body:{
+        backgroundColor: "#E9ECF4",
+        height:900,
+        // alignItems:'center',
     },
-    userCityText: {
-        color: '#A5A5A5',
-        fontSize: 15,
-        fontWeight: '600',
-        textAlign: 'center',
+    placeIcon: {
+        color: 'black',
+        fontSize: 18,
     },
-    userMemberText: {
-        color: '#FFD700',
-        fontSize: 12,
-        fontWeight: '600',
-        textAlign: 'center',
-        paddingBottom: 9,
-    },
-    userImage: {
-        borderColor: '#FFF',
-        borderRadius: 85,
-        borderWidth: 3,
-        height: 170,
-        marginBottom: 15,
-        width: 170,
-    },
-    userNameText: {
-        color: '#FFF',
-        fontSize: 22,
+    titleList: {
+        fontSize: 18,
         fontWeight: 'bold',
-        paddingBottom: 6,
-        textAlign: 'center',
+        color: '#000000',
     },
+    descList: {
+        fontSize: 10,
+        color: '#B0B0B0',
+    }
+
 });
-export const stylesDetailProducts = StyleSheet.create({
+export const stylesListProducts = StyleSheet.create({
     container: {
         flex: 1,
     },
     list: {
         paddingHorizontal: 5,
-        backgroundColor: 'white',
+        backgroundColor: '#FFFFFF',
     },
     listContainer: {
         alignItems: 'center',
@@ -148,12 +147,10 @@ export const stylesDetailProducts = StyleSheet.create({
         shadowOpacity: 0.37,
         shadowRadius: 7.49,
         elevation: 12,
-
         marginVertical: 5,
-        backgroundColor: '#F6F6F6',
+        backgroundColor: '#f1f1f1',
         flexBasis: '46%',
         marginHorizontal: 5,
-
         borderRadius: 20,
     },
     cardFooter: {

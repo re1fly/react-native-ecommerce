@@ -5,11 +5,10 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Text, View, StyleSheet} from 'react-native';
 import {ScrollView} from 'native-base';
 import {NativeBaseProvider} from 'native-base/src/core/NativeBaseProvider';
-import WomenProducts from './category/WomenProducts';
 import {useNavigation} from '@react-navigation/native';
 import {stylesProducts} from '../assets/Styles';
-import MenProducts from './category/MenProducts';
-import KidProducts from './category/KidProducts';
+import {GET_KIDS_PRODUCTS, GET_MEN_PRODUCTS, GET_WOMEN_PRODUCTS} from '../components/api/Url';
+import DetailProducts from './category/DetailProducts';
 
 const CardProduct = (props) => {
     const navigation = useNavigation();
@@ -22,7 +21,13 @@ const CardProduct = (props) => {
                         source={{uri: props.image}}/>
             <Card.Actions style={stylesProducts.ButtonDetail}>
                 <Button icon="arrow-right"
-                        onPress={() => navigation.navigate(props.screenName)}>See Products</Button>
+                        color="black"
+                        labelStyle={{fontSize: 14, textTransform: 'capitalize', fontWeight: '700'}}
+                        onPress={() => navigation.navigate(props.screenName)}
+                        contentStyle={{flexDirection: 'row-reverse'}}
+                >
+                    See Products
+                </Button>
             </Card.Actions>
         </Card>
     );
@@ -31,17 +36,18 @@ const CardProduct = (props) => {
 
 const DetailMens = () => {
     return (
-        <MenProducts/>
+        <DetailProducts url={GET_MEN_PRODUCTS} title="Men"/>
     );
 };
 const DetailWomen = () => {
     return (
-        <WomenProducts/>
+        <DetailProducts url={GET_WOMEN_PRODUCTS} title="Women"/>
+        // <WomenProducts/>
     );
 };
 const DetailKids = () => {
     return (
-        <KidProducts/>
+        <DetailProducts url={GET_KIDS_PRODUCTS} title="Kids"/>
     );
 };
 
@@ -70,7 +76,12 @@ const ProductStack = createNativeStackNavigator();
 
 export function ProductStackScreen() {
     return (
-        <ProductStack.Navigator screenOptions={{headerShown: false}}>
+        <ProductStack.Navigator screenOptions={{
+            headerShown: false,
+            contentStyle: {
+                backgroundColor: 'white',
+            },
+        }}>
             <ProductStack.Screen name="Product" component={ProductScreen}/>
             <ProductStack.Screen name="Men" component={DetailMens}/>
             <ProductStack.Screen name="Women" component={DetailWomen}/>
