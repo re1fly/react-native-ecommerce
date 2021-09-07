@@ -1,5 +1,110 @@
 import {Platform, StyleSheet} from 'react-native';
 
+export const stylesAccount = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    imageContainer: {
+        flex: 1,
+        position: 'relative',
+        resizeMode: 'cover',
+        alignItems: 'center',
+        justifyContent: 'center',
+
+    },
+    logo: {
+        fontWeight: 'bold',
+        fontSize: 50,
+        color: 'black',
+    },
+    inputView: {
+        width: '80%',
+        backgroundColor: '#465881',
+        borderRadius: 25,
+        height: 50,
+        marginBottom: 20,
+        justifyContent: 'center',
+        padding: 20,
+    },
+    inputText: {
+        height: 50,
+        color: 'white',
+    },
+    desc: {
+        color: 'black',
+        fontSize: 25,
+        fontWeight: '600',
+        marginBottom: 200,
+    },
+    loginBtn: {
+        width: '70%',
+        backgroundColor: 'black',
+        borderRadius: 25,
+        height: 55,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 40,
+    },
+    registerBtn: {
+        width: '70%',
+        backgroundColor: 'white',
+        borderRadius: 25,
+        height: 55,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 20,
+    },
+    loginText: {
+        color: 'white',
+    },
+    registerText: {
+        color: 'black',
+    },
+    bottomViewLogin: {
+        backgroundColor: '#fff',
+        width: '100%',
+        height: 450,
+        borderTopRightRadius: 40,
+        borderTopLeftRadius: 40,
+    },
+    bottomViewRegister: {
+        backgroundColor: '#fff',
+        width: '100%',
+        height: 600,
+        borderTopRightRadius: 40,
+        borderTopLeftRadius: 40,
+    },
+});
+export const stylesLoginRegister = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    textTitle: {
+        fontWeight: 'bold',
+        fontSize: 30,
+        marginVertical: 20,
+    },
+    textInput: {
+        width: '70%',
+        marginVertical: 10,
+        fontSize: 12,
+        height: 45,
+    },
+    textForgot: {
+        color: 'black',
+        fontSize: 11,
+        marginLeft: 180,
+    },
+    btn: {
+        width: '60%',
+        marginTop: 70,
+        height: 50,
+        borderRadius: 25,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});
 export const stylesHome = StyleSheet.create({
     homeContainer: {
         flex: 1,
@@ -25,9 +130,9 @@ export const stylesHome = StyleSheet.create({
         overflow: 'hidden',
     },
     thumbnailText: {
-      alignSelf: 'center',
+        alignSelf: 'center',
         marginTop: 2,
-        fontSize: 12
+        fontSize: 12,
     },
     textNewArrivals: {
         fontWeight: '700',
@@ -63,28 +168,28 @@ export const stylesProducts = StyleSheet.create({
 export const stylesProfile = StyleSheet.create({
     container: {
         marginVertical: 20,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
-    header:{
-        backgroundColor: "#E9ECF4",
+    header: {
+        backgroundColor: '#E9ECF4',
         borderTopRightRadius: 45,
-        borderTopLeftRadius: 45
+        borderTopLeftRadius: 45,
     },
-    headerContent:{
-        padding:20,
+    headerContent: {
+        padding: 20,
         alignItems: 'center',
     },
     avatar: {
         width: 140,
         height: 140,
         borderRadius: 40,
-        marginBottom:10,
+        marginBottom: 10,
     },
-    name:{
-        fontSize:24,
-        color:"black",
-        fontWeight:'900',
-        textAlign: 'center'
+    name: {
+        fontSize: 24,
+        color: 'black',
+        fontWeight: '900',
+        textAlign: 'center',
     },
     userCityText: {
         color: '#8a8a8a',
@@ -106,9 +211,9 @@ export const stylesProfile = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
     },
-    body:{
-        backgroundColor: "#E9ECF4",
-        height:900,
+    body: {
+        backgroundColor: '#E9ECF4',
+        height: 900,
         // alignItems:'center',
     },
     placeIcon: {
@@ -123,8 +228,48 @@ export const stylesProfile = StyleSheet.create({
     descList: {
         fontSize: 10,
         color: '#B0B0B0',
-    }
+    },
 
+});
+export const stylesCart = StyleSheet.create({
+    container: {
+        backgroundColor: 'transparent',
+    },
+    body: {
+        backgroundColor: 'white',
+        // borderTopRightRadius: 45,
+        // borderTopLeftRadius: 45,
+    },
+    bodyContent: {
+        padding: 14,
+    },
+    iconTitle: {
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: 'black',
+    },
+    textTitle: {
+        fontSize: 21,
+        fontWeight: 'bold',
+        marginTop: 20,
+    },
+    myCart: {
+        backgroundColor: 'transparent',
+        height: 'auto',
+        marginTop: 20,
+        flexDirection: 'row',
+    },
+    containerImageCart: {
+        flexDirection: 'row',
+        flexGrow: 1,
+        flexShrink: 1,
+        alignSelf: 'center',
+    },
+    imageCart: {
+        height: 120,
+        width: 120,
+        borderRadius: 20,
+    },
 });
 export const stylesListProducts = StyleSheet.create({
     container: {

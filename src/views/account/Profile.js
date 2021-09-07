@@ -7,10 +7,9 @@ import {
 } from 'react-native';
 import {Icon} from 'react-native-elements';
 import {stylesProfile} from '../../assets/Styles';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Button, List} from 'react-native-paper';
 
-const ProfilePage = () => {
+export const Profile = () => {
     return (
         <View style={stylesProfile.container}>
             <View style={stylesProfile.header}>
@@ -52,7 +51,7 @@ const ProfilePage = () => {
                         titleStyle={stylesProfile.titleList}
                         descriptionStyle={stylesProfile.descList}
                         left={props => <List.Icon {...props} icon="account"/>}
-                        right={props => <List.Icon {...props} icon="arrow-right"/>}
+                        right={props => <List.Icon {...props} icon="chevron-right"/>}
                         onPress={() => console.warn('pressed')}
                     />
                 </View>
@@ -68,7 +67,7 @@ const ProfilePage = () => {
                         titleStyle={stylesProfile.titleList}
                         descriptionStyle={stylesProfile.descList}
                         left={props => <List.Icon {...props} icon="wallet"/>}
-                        right={props => <List.Icon {...props} icon="arrow-right"/>}
+                        right={props => <List.Icon {...props} icon="chevron-right"/>}
                         onPress={() => console.warn('pressed')}
                     />
                 </View>
@@ -84,7 +83,7 @@ const ProfilePage = () => {
                         titleStyle={stylesProfile.titleList}
                         descriptionStyle={stylesProfile.descList}
                         left={props => <List.Icon {...props} icon="note-text"/>}
-                        right={props => <List.Icon {...props} icon="arrow-right"/>}
+                        right={props => <List.Icon {...props} icon="chevron-right"/>}
                         onPress={() => console.warn('pressed')}
                     />
                 </View>
@@ -102,7 +101,7 @@ const ProfilePage = () => {
                         titleStyle={stylesProfile.titleList}
                         descriptionStyle={stylesProfile.descList}
                         left={props => <List.Icon {...props} icon="headset"/>}
-                        right={props => <List.Icon {...props} icon="arrow-right"/>}
+                        right={props => <List.Icon {...props} icon="chevron-right"/>}
                         onPress={() => console.warn('pressed')}
                     />
                 </View>
@@ -115,62 +114,8 @@ const ProfilePage = () => {
                     Logout
                 </Button>
             </View>
-            {/*<View style={stylesProfile.item}>*/}
-            {/*    <View style={stylesProfile.iconContent}>*/}
-            {/*        <Image style={stylesProfile.icon}*/}
-            {/*               source={{uri: 'https://img.icons8.com/color/70/000000/cottage.png'}}/>*/}
-            {/*    </View>*/}
-            {/*    <View style={stylesProfile.infoContent}>*/}
-            {/*        <Text style={stylesProfile.info}>Home</Text>*/}
-            {/*    </View>*/}
-            {/*</View>*/}
-
-            {/*<View style={stylesProfile.item}>*/}
-            {/*    <View style={stylesProfile.iconContent}>*/}
-            {/*        <Image style={stylesProfile.icon}*/}
-            {/*               source={{uri: 'https://img.icons8.com/color/70/000000/administrator-male.png'}}/>*/}
-            {/*    </View>*/}
-            {/*    <View style={stylesProfile.infoContent}>*/}
-            {/*        <Text style={stylesProfile.info}>Settings</Text>*/}
-            {/*    </View>*/}
-            {/*</View>*/}
-
-            {/*<View style={stylesProfile.item}>*/}
-            {/*    <View style={stylesProfile.iconContent}>*/}
-            {/*        <Image style={stylesProfile.icon}*/}
-            {/*               source={{uri: 'https://img.icons8.com/color/70/000000/filled-like.png'}}/>*/}
-            {/*    </View>*/}
-            {/*    <View style={stylesProfile.infoContent}>*/}
-            {/*        <Text style={stylesProfile.info}>News</Text>*/}
-            {/*    </View>*/}
-            {/*</View>*/}
-
-            {/*<View style={stylesProfile.item}>*/}
-            {/*    <View style={stylesProfile.iconContent}>*/}
-            {/*        <Image style={stylesProfile.icon}*/}
-            {/*               source={{uri: 'https://img.icons8.com/color/70/000000/facebook-like.png'}}/>*/}
-            {/*    </View>*/}
-            {/*    <View style={stylesProfile.infoContent}>*/}
-            {/*        <Text style={stylesProfile.info}>Shop</Text>*/}
-            {/*    </View>*/}
-            {/*</View>*/}
-
         </View>
     );
 };
 
-const ProfileStack = createNativeStackNavigator();
-
-export default function Profile() {
-    return (
-        <ProfileStack.Navigator screenOptions={{
-            headerShown: false,
-            contentStyle: {
-                backgroundColor: '#b9bec9',
-            },
-        }}>
-            <ProfileStack.Screen name="Page" component={ProfilePage}/>
-        </ProfileStack.Navigator>
-    );
-}
 

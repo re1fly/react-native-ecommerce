@@ -4,8 +4,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {CartStackScreen} from '../../views/Cart';
 import HomeStackScreen from '../../views/Home';
 import {ProductStackScreen} from '../../views/Product';
-import Profile from '../../views/account/Profile';
 import {StyleSheet} from 'react-native';
+import Account from '../../views/account/Account';
 
 
 const Tab = createBottomTabNavigator();
@@ -56,7 +56,7 @@ export default function BottomNavigator() {
                 }}
             />
             <Tab.Screen
-                name="WomenProduct"
+                name="Products"
                 component={ProductStackScreen}
                 options={{
                     tabBarLabel: 'Products',
@@ -70,7 +70,7 @@ export default function BottomNavigator() {
                 component={CartStackScreen}
                 options={{
                     tabBarLabel: 'Cart',
-                    tabBarBadge: 5,
+                    tabBarBadge: 0,
                     tabBarIcon: ({color, size}) => (
                         <MaterialCommunityIcons name="cart" color={color} size={size}/>
                     ),
@@ -78,7 +78,7 @@ export default function BottomNavigator() {
             />
             <Tab.Screen
                 name="Profile"
-                component={Profile}
+                component={Account}
                 options={{
                     tabBarLabel: 'Account',
                     tabBarIcon: ({color, size}) => (
