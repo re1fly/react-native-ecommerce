@@ -1,6 +1,7 @@
 export const NGROK = '56ce-103-225-151-50.ngrok.io';
 export const BASE_URL = 'http://56ce-103-225-151-50.ngrok.io/api/';
 
+export const REGISTER = BASE_URL + 'signup/';
 
 export const GET_WOMEN_PRODUCTS = BASE_URL + 'women-clothes';
 export const GET_WOMEN_NEW_ARRIVALS = BASE_URL + 'women-new-arrivals';

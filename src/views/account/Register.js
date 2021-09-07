@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {Button, TextInput} from 'react-native-paper';
-import {stylesLoginRegister} from '../../assets/Styles';
+import {Alert, Text, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, Button, TextInput} from 'react-native-paper';
+import {stylesAccount, stylesLoginRegister} from '../../assets/Styles';
+import axios from 'axios';
+import {REGISTER} from '../../components/api/Url';
 
 export const Register = (props) => {
     const [name, setName] = useState('');
@@ -10,12 +12,50 @@ export const Register = (props) => {
     const [password, setPassword] = useState('');
     const [icon, setIcon] = useState('eye');
     const [secureText, setSecureText] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const changeIcon = () => {
         setIcon(icon == 'eye' ? 'eye-off' : 'eye');
         setSecureText(secureText == false ? true : false);
     };
 
+    let dataRegister = {
+        'name': name,
+        'email': email,
+        'phone': phone,
+        'password': password,
+    };
+
+    const submitRegister = () => {
+        setIsLoading(true);
+
+        axios.post(REGISTER, dataRegister).then(response => {
+            console.log(response);
+            if (response.data.success === true) {
+                setIsLoading(false);
+                setName('');
+                setPhone('');
+                setEmail('');
+                setPassword('');
+                Alert.alert(
+                    'Register Success',
+                    'Press OK to continue',
+                    [
+                        {text: 'OK', onPress: () => console.log('OK')},
+                    ],
+                );
+            } else {
+                setIsLoading(false);
+                Alert.alert(
+                    'Register Error',
+                    response.data.message,
+                    [
+                        {text: 'OK', onPress: () => console.log('OK Pressed')},
+                    ],
+                );
+            }
+        });
+    };
 
     return (
         <View style={{
@@ -81,13 +121,11 @@ export const Register = (props) => {
                     fontSize: 11,
                 }}>Already have an account? Sign in here</Text>
             </TouchableOpacity>
-            <Button mode="contained"
-                    color="black"
-                    style={stylesLoginRegister.btn}
-                    onPress={() => console.warn('Signup Success !')}
-            >
-                Sign Up
-            </Button>
+            <TouchableOpacity style={stylesLoginRegister.btn} onPress={submitRegister}>
+                <Text style={stylesLoginRegister.textBtn}>
+                    {isLoading == true ? <ActivityIndicator animating={true} color="white"/> : 'Sign Up'}
+                </Text>
+            </TouchableOpacity>
         </View>
     );
 };

@@ -8,7 +8,7 @@ export const ForgotPassword = () => {
     return (
         <View style={stylesLoginRegister.container}>
             <Text style={stylesLoginRegister.textTitle}>
-               Reset Your Password
+                Reset Your Password
             </Text>
             <Text style={{marginTop: 40, fontSize: 11}}>
                 Please enter your email address
@@ -17,20 +17,17 @@ export const ForgotPassword = () => {
                 mode="outlined"
                 outlineColor="black"
                 selectionColor="black"
-                theme={{ colors: { primary: 'black',underlineColor:'transparent'}}}
+                theme={{colors: {primary: 'black', underlineColor: 'transparent'}}}
                 label="Email"
                 value={email}
                 onChangeText={email => setEmail(email)}
                 style={stylesLoginRegister.textInput}
             >
             </TextInput>
-            <Button mode="contained"
-                    color="black"
-                    style={stylesLoginRegister.btn}
-                    onPress={() => console.warn('SignIn Success !')}
-            >
-                Submit
-            </Button>
+
+            <TouchableOpacity style={stylesLoginRegister.btn} onPress={() => console.warn('SignIn Success !')}>
+                <Text style={stylesLoginRegister.textBtn}>Submit</Text>
+            </TouchableOpacity>
         </View>
 
     );

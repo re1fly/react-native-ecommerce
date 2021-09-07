@@ -96,13 +96,20 @@ export const stylesLoginRegister = StyleSheet.create({
         fontSize: 11,
         marginLeft: 180,
     },
+    textBtn: {
+        color: 'white',
+        fontSize: 14,
+        fontWeight: 'bold',
+        textTransform: 'uppercase'
+    },
     btn: {
-        width: '60%',
-        marginTop: 70,
-        height: 50,
+        width: '70%',
+        backgroundColor: 'black',
         borderRadius: 25,
+        height: 55,
         alignItems: 'center',
         justifyContent: 'center',
+        marginTop: 70,
     },
 });
 export const stylesHome = StyleSheet.create({

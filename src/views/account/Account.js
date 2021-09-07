@@ -31,11 +31,11 @@ const PageAccount = () => {
     const toggleRegisterToLogin = () => {
         setLoginVisible(!loginVisible);
         setRegisterVisible(!registerVisible);
-    }
+    };
     const toggleForgotToLogin = () => {
         setLoginVisible(!loginVisible);
         setForgotVisible(!forgotVisible);
-    }
+    };
 
     return (
         <SafeAreaView style={stylesAccount.container}>
