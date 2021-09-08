@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {
     StyleSheet,
     Text,
@@ -8,8 +8,26 @@ import {
 import {Icon} from 'react-native-elements';
 import {stylesProfile} from '../../assets/Styles';
 import {Button, List} from 'react-native-paper';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
+
+
+// const Logout = () => {
+//     const navigation = useNavigation();
+//
+//     AsyncStorage.removeItem('full_name')
+//     AsyncStorage.removeItem('email')
+//
+//     navigation.navigate('LoginPage');
+// }
 
 export const Profile = () => {
+    const [fullName, setFullName] = useState();
+    const [email, setEmail] = useState();
+
+    AsyncStorage.getItem('full_name').then(value => setFullName(value));
+    AsyncStorage.getItem('email').then(value => setEmail(value));
+
     return (
         <View style={stylesProfile.container}>
             <View style={stylesProfile.header}>
@@ -17,8 +35,8 @@ export const Profile = () => {
                     <Image style={stylesProfile.avatar}
                            source={{uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSC3khQ9xMaJSsNpwHEea_FK4Aj9BdXZSaSBw&usqp=CAU'}}/>
 
-                    <Text style={stylesProfile.name}>Travis Scott</Text>
-                    <Text style={stylesProfile.userMemberText}>Gold Member </Text>
+                    <Text style={stylesProfile.name}>{fullName}</Text>
+                    <Text style={stylesProfile.userMemberText}>{email}</Text>
                     <View style={stylesProfile.userAddressRow}>
                         <View>
                             <Icon
@@ -109,7 +127,7 @@ export const Profile = () => {
                 <Button mode="contained"
                         color="black"
                         style={{marginHorizontal: 120, marginTop: 70, borderRadius: 15}}
-                        onPress={() => console.warn('Logout Success !')}
+                        onPress={() => {console.warn('logout')}}
                 >
                     Logout
                 </Button>

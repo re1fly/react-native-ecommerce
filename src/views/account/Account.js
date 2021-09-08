@@ -18,49 +18,22 @@ const PageAccount = () => {
     const toggleLoginView = () => {
         setLoginVisible(!loginVisible);
     };
-
     const toggleRegisterView = () => {
         setRegisterVisible(!registerVisible);
     };
-
     const toggleForgotView = () => {
         setLoginVisible(!loginVisible);
         setForgotVisible(!forgotVisible);
     };
-
     const toggleRegisterToLogin = () => {
         setLoginVisible(!loginVisible);
         setRegisterVisible(!registerVisible);
     };
-    const toggleForgotToLogin = () => {
-        setLoginVisible(!loginVisible);
-        setForgotVisible(!forgotVisible);
-    };
+
 
     return (
         <SafeAreaView style={stylesAccount.container}>
             <View style={stylesAccount.container}>
-                <BottomSheet visible={loginVisible}
-                             onBackdropPress={toggleLoginView}
-                >
-                    <View style={stylesAccount.bottomViewLogin}>
-                        <Login forgotView={toggleForgotView}/>
-                    </View>
-                </BottomSheet>
-                <BottomSheet visible={registerVisible}
-                             onBackdropPress={toggleRegisterView}
-                >
-                    <View style={stylesAccount.bottomViewRegister}>
-                        <Register login={toggleRegisterToLogin}/>
-                    </View>
-                </BottomSheet>
-                <BottomSheet visible={forgotVisible}
-                             onBackdropPress={toggleForgotView}
-                >
-                    <View style={stylesAccount.bottomViewLogin}>
-                        <ForgotPassword/>
-                    </View>
-                </BottomSheet>
                 <ImageBackground source={require('../../assets/images/backgroundLogin.jpg')}
                                  resizeMode="cover"
                                  style={stylesAccount.imageContainer}
@@ -75,6 +48,30 @@ const PageAccount = () => {
                     </TouchableOpacity>
                 </ImageBackground>
             </View>
+            <BottomSheet visible={loginVisible}
+                         onBackdropPress={toggleLoginView}
+                         onBackButtonPress={toggleLoginView}
+            >
+                <View style={stylesAccount.bottomViewLogin}>
+                    <Login forgotView={toggleForgotView}/>
+                </View>
+            </BottomSheet>
+            <BottomSheet visible={registerVisible}
+                         onBackdropPress={toggleRegisterView}
+                         onBackButtonPress={toggleRegisterView}
+            >
+                <View style={stylesAccount.bottomViewRegister}>
+                    <Register login={toggleRegisterToLogin}/>
+                </View>
+            </BottomSheet>
+            <BottomSheet visible={forgotVisible}
+                         onBackdropPress={toggleForgotView}
+                         onBackButtonPress={toggleForgotView}
+            >
+                <View style={stylesAccount.bottomViewLogin}>
+                    <ForgotPassword/>
+                </View>
+            </BottomSheet>
         </SafeAreaView>
     );
 };
@@ -83,9 +80,6 @@ export default function Account() {
     return (
         <ProfileStack.Navigator screenOptions={{
             headerShown: false,
-            // contentStyle: {
-            //     backgroundColor: '#b9bec9',
-            // },
         }}>
             <ProfileStack.Screen name="LoginPage" component={PageAccount}/>
             <ProfileStack.Screen name="ProfilePage" component={Profile}/>

@@ -15,7 +15,7 @@ export const stylesAccount = StyleSheet.create({
     logo: {
         fontWeight: 'bold',
         fontSize: 50,
-        color: 'black',
+        color: 'white',
     },
     inputView: {
         width: '80%',
@@ -31,7 +31,7 @@ export const stylesAccount = StyleSheet.create({
         color: 'white',
     },
     desc: {
-        color: 'black',
+        color: 'white',
         fontSize: 25,
         fontWeight: '600',
         marginBottom: 200,

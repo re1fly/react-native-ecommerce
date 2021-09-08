@@ -50,7 +50,7 @@ export const Register = (props) => {
                     'Register Error',
                     response.data.message,
                     [
-                        {text: 'OK', onPress: () => console.log('OK Pressed')},
+                        {text: 'OK'},
                     ],
                 );
             }
@@ -99,6 +99,10 @@ export const Register = (props) => {
                 theme={{colors: {primary: 'black', underlineColor: 'transparent'}}}
                 label="Email"
                 value={email}
+                autoCapitalize="none"
+                autoCompleteType="email"
+                textContentType="emailAddress"
+                keyboardType="email-address"
                 onChangeText={email => setEmail(email)}
                 style={stylesLoginRegister.textInput}
             >
