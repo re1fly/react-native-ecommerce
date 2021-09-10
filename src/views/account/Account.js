@@ -1,5 +1,5 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Profile} from './Profile';
 import {Login} from './Login';
 import {stylesAccount} from '../../assets/Styles';
@@ -7,6 +7,8 @@ import {ImageBackground, Text, TouchableOpacity, View, SafeAreaView} from 'react
 import {BottomSheet} from 'react-native-btr';
 import {Register} from './Register';
 import {ForgotPassword} from './ForgotPassword';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Image} from 'react-native-elements';
 
 const ProfileStack = createNativeStackNavigator();
 
@@ -38,7 +40,7 @@ const PageAccount = () => {
                                  resizeMode="cover"
                                  style={stylesAccount.imageContainer}
                 >
-                    <Text style={stylesAccount.logo}>SportZ</Text>
+                    <Image style={{width: 200, height: 200}} source={require('../../assets/images/logo.png')}/>
                     <Text style={stylesAccount.desc}>Get your cool wear right now</Text>
                     <TouchableOpacity style={stylesAccount.loginBtn} onPress={toggleLoginView}>
                         <Text style={stylesAccount.loginText}>Sign In</Text>
@@ -77,12 +79,37 @@ const PageAccount = () => {
 };
 
 export default function Account() {
+    const [isLogin, setIsLogin] = useState();
+
+    useEffect(() => {
+        AsyncStorage.getItem('isLogin').then(value => setIsLogin(JSON.parse(value)));
+    }, []);
+
     return (
-        <ProfileStack.Navigator screenOptions={{
-            headerShown: false,
-        }}>
-            <ProfileStack.Screen name="LoginPage" component={PageAccount}/>
-            <ProfileStack.Screen name="ProfilePage" component={Profile}/>
+        <ProfileStack.Navigator screenOptions={{headerShown: false}}>
+            {
+                isLogin == null ?
+                    (
+                        <>
+                            <ProfileStack.Screen name="LoginPage"
+                                                 component={PageAccount}
+                                                 options={{
+                                                     animationTypeForReplace: 'push',
+                                                 }}/>
+                        </>
+
+                    )
+                    :
+                    (
+                        <>
+                            <ProfileStack.Screen name="ProfilePage" component={Profile} options={{
+                                animationTypeForReplace: 'pop',
+                            }}/>
+                        </>
+
+                    )
+            }
         </ProfileStack.Navigator>
     );
+
 }

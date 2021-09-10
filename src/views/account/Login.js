@@ -33,7 +33,7 @@ export const Login = (props) => {
                 await AsyncStorage.setItem('full_name', response.data.data.full_name);
                 await AsyncStorage.setItem('id', JSON.stringify(response.data.data.id));
                 await AsyncStorage.setItem('email', response.data.data.email);
-
+                await AsyncStorage.setItem('isLogin', JSON.stringify(true));
                 navigation.navigate('ProfilePage');
             } else {
                 setIsLoading(false);
@@ -45,6 +45,7 @@ export const Login = (props) => {
                     ],
                 );
             }
+            AsyncStorage.getItem('isLogin').then(value => console.log(value));
         });
     };
 

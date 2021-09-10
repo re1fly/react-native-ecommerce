@@ -12,11 +12,6 @@ export const stylesAccount = StyleSheet.create({
         justifyContent: 'center',
 
     },
-    logo: {
-        fontWeight: 'bold',
-        fontSize: 50,
-        color: 'white',
-    },
     inputView: {
         width: '80%',
         backgroundColor: '#465881',
@@ -32,9 +27,10 @@ export const stylesAccount = StyleSheet.create({
     },
     desc: {
         color: 'white',
-        fontSize: 25,
+        fontSize: 22,
         fontWeight: '600',
         marginBottom: 200,
+        top: -50
     },
     loginBtn: {
         width: '70%',
@@ -100,7 +96,7 @@ export const stylesLoginRegister = StyleSheet.create({
         color: 'white',
         fontSize: 14,
         fontWeight: 'bold',
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
     },
     btn: {
         width: '70%',
@@ -147,6 +143,19 @@ export const stylesHome = StyleSheet.create({
         textAlign: 'center',
         marginTop: 10,
     },
+    textWinter: {
+        fontWeight: '600',
+        fontSize: 15,
+        paddingHorizontal: 7,
+        marginTop: 30,
+        marginBottom: 10,
+    },
+    textSummer: {
+        fontWeight: '600',
+        fontSize: 15,
+        paddingHorizontal: 7,
+        marginBottom: 10
+    },
 });
 export const stylesProducts = StyleSheet.create({
     ButtonDetail: {
@@ -186,11 +195,18 @@ export const stylesProfile = StyleSheet.create({
         padding: 20,
         alignItems: 'center',
     },
+    containerAvatar: {
+        alignItems: 'center',
+        width: 142,
+        height: 142,
+        borderWidth: 1,
+        borderRadius: 40,
+        borderColor: 'black',
+    },
     avatar: {
         width: 140,
         height: 140,
         borderRadius: 40,
-        marginBottom: 10,
     },
     name: {
         fontSize: 24,
@@ -277,6 +293,38 @@ export const stylesCart = StyleSheet.create({
         width: 120,
         borderRadius: 20,
     },
+});
+export const stylesShipping = StyleSheet.create({
+    paper: {
+        padding: 20
+    },
+    containerForm: {
+        backgroundColor: 'white',
+        height: '95%',
+        borderRadius: 20
+    },
+    containerInput: {
+        padding: 10
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        alignSelf: 'center',
+        marginTop: 5
+    },
+    input: {
+        marginVertical: 10,
+        fontSize: 14,
+        backgroundColor: 'transparent',
+        marginHorizontal: 20
+    },
+    btnSubmit: {
+        marginHorizontal: 20,
+        marginVertical: 5,
+        marginTop: 50,
+        borderRadius: 15,
+        paddingVertical: 2,
+    }
 });
 export const stylesListProducts = StyleSheet.create({
     container: {

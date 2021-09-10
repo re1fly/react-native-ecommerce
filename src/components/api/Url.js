@@ -1,5 +1,5 @@
-export const NGROK = 'e12b-103-225-151-50.ngrok.io';
-export const BASE_URL = 'http://e12b-103-225-151-50.ngrok.io/api/';
+export const NGROK = 'de49-103-225-151-50.ngrok.io';
+export const BASE_URL = 'http://de49-103-225-151-50.ngrok.io/api/';
 
 export const REGISTER = BASE_URL + 'signup/';
 export const LOGIN = BASE_URL + 'signin/';

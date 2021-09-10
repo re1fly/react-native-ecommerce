@@ -7,19 +7,18 @@ import {Button, Divider, List, Snackbar} from 'react-native-paper';
 import {ScrollView} from 'native-base';
 import {NativeBaseProvider} from 'native-base/src/core/NativeBaseProvider';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
-function DetailsScreen() {
-    return (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Text>Details!</Text>
-        </View>
-    );
-}
+import {Shipping} from './detail_cart/Shipping';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useState} from 'react';
+import {Payment} from './detail_cart/Payment';
 
 function CartScreen({navigation}) {
-    const [snackIncrease, setSnackIncrease] = React.useState(false);
-    const [snackDecrease, setSnackDecrease] = React.useState(false);
-    const [snackRemove, setSnackRemove] = React.useState(false);
+    const [snackIncrease, setSnackIncrease] = useState(false);
+    const [snackDecrease, setSnackDecrease] = useState(false);
+    const [snackRemove, setSnackRemove] = useState(false);
+    const [street, setStreet] = useState();
+    const [city, setCity] = useState();
+    const [state, setState] = useState();
 
     const onToggleSnackIncrease = () => setSnackIncrease(!snackIncrease);
     const onDismissSnackIncrease = () => setSnackIncrease(false);
@@ -29,6 +28,13 @@ function CartScreen({navigation}) {
 
     const onToggleSnackRemove = () => setSnackRemove(!snackRemove);
     const onDismissSnackRemove = () => setSnackRemove(false);
+
+    AsyncStorage.getItem('address').then(value => {
+        const data = JSON.parse(value);
+        setStreet(data.street);
+        setCity(data.city);
+        setState(data.state);
+    });
 
     return (
         // <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -216,13 +222,13 @@ function CartScreen({navigation}) {
                             height: 70,
                         }}>
                             <List.Item
-                                title="Jl.Kerobokan no.138x"
-                                description="Kuta Utara, Badung"
+                                title={street}
+                                description={city + ',' + state}
                                 titleStyle={stylesProfile.titleList}
                                 descriptionStyle={stylesProfile.descList}
                                 left={props => <List.Icon {...props} color="#114BFB" icon="map-marker-radius"/>}
                                 right={props => <List.Icon {...props} color="#000000" icon="chevron-right"/>}
-                                onPress={() => console.warn('pressed')}
+                                onPress={() => navigation.navigate('Shipping')}
                             />
                         </View>
 
@@ -239,7 +245,7 @@ function CartScreen({navigation}) {
                                 descriptionStyle={stylesProfile.descList}
                                 left={props => <List.Icon {...props} color="#114BFB" icon="atm"/>}
                                 right={props => <List.Icon {...props} color="#000000" icon="chevron-right"/>}
-                                onPress={() => console.warn('pressed')}
+                                onPress={() => navigation.navigate('Payment')}
                             />
                         </View>
 
@@ -308,12 +314,10 @@ export function CartStackScreen() {
         <NativeBaseProvider>
             <CartStack.Navigator screenOptions={{
                 headerShown: false,
-                contentStyle: {
-                    backgroundColor: '#b9bec9',
-                },
             }}>
                 <CartStack.Screen name="Cart" component={CartScreen}/>
-                <CartStack.Screen name="Details" component={DetailsScreen}/>
+                <CartStack.Screen name="Shipping" component={Shipping}/>
+                <CartStack.Screen name="Payment" component={Payment}/>
             </CartStack.Navigator>
         </NativeBaseProvider>
     );

@@ -1,14 +1,15 @@
 import {Button, Text, View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Avatar, Container, Image, VStack} from 'native-base';
+import {Alert, Avatar, Container, Image, VStack} from 'native-base';
 import * as React from 'react';
-import {useState} from 'react';
+import {useCallback, useState} from 'react';
 import {SearchBar} from 'react-native-elements';
 import {NativeBaseProvider} from 'native-base/src/core/NativeBaseProvider';
 import HomeCarousel from '../components/carousels/HomeCarousel';
 import {Drawer} from 'react-native-paper';
 import {stylesHome} from '../assets/Styles';
 import {useNavigation} from '@react-navigation/native';
+import YoutubePlayer from 'react-native-youtube-iframe';
 import {
     DetailBackpacks, DetailBalls,
     DetailCaps,
@@ -40,6 +41,7 @@ const DrawerItem = () => {
     );
 };
 
+
 const ItemThumbnail = (props) => {
     const navigation = useNavigation();
     return (
@@ -56,35 +58,50 @@ const ItemThumbnail = (props) => {
 
 const HomeScreen = ({navigation}) => {
     const [search, setSearch] = useState('');
+    const [playing, setPlaying] = useState(false);
 
     const updateSearch = (search) => {
         setSearch(search);
     };
+
+    const onStateChangeVideo = useCallback((state) => {
+        if (state === 'ended') {
+            setPlaying(false);
+            Alert.alert('video has finished playing!');
+        }
+    }, []);
+
+    const togglePlaying = useCallback(() => {
+        setPlaying((prev) => !prev);
+    }, []);
+
     return (
         <NativeBaseProvider>
-            <ScrollView showsVerticalScrollIndicator={false} style={{marginBottom: '20%'}}>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={stylesHome.homeContainer}>
-                    <SearchBar
-                        inputStyle={{backgroundColor: '#f1f1f1'}}
-                        containerStyle={{
-                            backgroundColor: 'white',
-                            marginRight: 60,
-                            marginLeft: 60,
-                            marginTop: 20,
-                            marginBottom: 12,
-                            padding: 0,
-                            borderRadius: 10,
-                            borderBottomColor: 'transparent',
-                            borderTopColor: 'transparent',
-                        }}
-                        leftIconContainerStyle={{backgroundColor: '#f1f1f1'}}
-                        inputContainerStyle={{backgroundColor: '#f1f1f1'}}
-                        lightTheme={true}
-                        placeholder="Search Products..."
-                        onChangeText={updateSearch}
-                        value={search}
-                        round={true}
-                    />
+                    {/*<SearchBar*/}
+                    {/*    inputStyle={{backgroundColor: '#f1f1f1'}}*/}
+                    {/*    containerStyle={{*/}
+                    {/*        backgroundColor: 'white',*/}
+                    {/*        marginRight: 60,*/}
+                    {/*        marginLeft: 60,*/}
+                    {/*        marginTop: 20,*/}
+                    {/*        marginBottom: 12,*/}
+                    {/*        padding: 0,*/}
+                    {/*        borderRadius: 10,*/}
+                    {/*        borderBottomColor: 'transparent',*/}
+                    {/*        borderTopColor: 'transparent',*/}
+                    {/*    }}*/}
+                    {/*    leftIconContainerStyle={{backgroundColor: '#f1f1f1'}}*/}
+                    {/*    inputContainerStyle={{backgroundColor: '#f1f1f1'}}*/}
+                    {/*    lightTheme={true}*/}
+                    {/*    placeholder="Search Products..."*/}
+                    {/*    onChangeText={updateSearch}*/}
+                    {/*    value={search}*/}
+                    {/*    round={true}*/}
+                    {/*/>*/}
+                    <Image style={{width: 150, height: 100, alignSelf: 'center'}} alt="logo"
+                           source={require('../assets/images/logo.png')}/>
                     <View style={stylesHome.categoriesContainer}>
                         <View style={stylesHome.categories}>
                             <Text>Categories</Text>
@@ -157,6 +174,26 @@ const HomeScreen = ({navigation}) => {
                         NEW ARRIVALS !
                     </Text>
                     <HomeCarousel/>
+                    <Text style={stylesHome.textWinter}>Winter Collection</Text>
+                    <View style={{paddingHorizontal: 20}}>
+                        <YoutubePlayer
+                            height={220}
+                            play={playing}
+                            videoId={'1mm5a7fFnaw'}
+                            onChangeState={onStateChangeVideo}
+                        />
+                    </View>
+
+                    <Text style={stylesHome.textSummer}>Summer Collection</Text>
+                    <View style={{paddingHorizontal: 20}}>
+                        <YoutubePlayer
+                            height={220}
+                            play={playing}
+                            videoId={'3LMbSOku-Xc'}
+                            onChangeState={onStateChangeVideo}
+                        />
+                    </View>
+
                 </View>
             </ScrollView>
         </NativeBaseProvider>

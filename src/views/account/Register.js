@@ -87,7 +87,7 @@ export const Register = (props) => {
                 theme={{colors: {primary: 'black', underlineColor: 'transparent'}}}
                 label="Phone"
                 value={phone}
-                keyboardType={'numeric'}
+                keyboardType='numeric'
                 onChangeText={phone => setPhone(phone)}
                 style={stylesLoginRegister.textInput}
             >
