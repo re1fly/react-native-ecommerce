@@ -9,16 +9,16 @@ import {
     ScrollView,
     FlatList,
     ActivityIndicator,
-    BackHandler,
+    BackHandler, AppRegistry,
 } from 'react-native';
 import axios from 'axios';
 import {stylesListProducts} from '../../assets/Styles';
-import {Appbar, Button} from 'react-native-paper';
+import {Appbar, Button, Modal, Portal, Provider, Snackbar} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {NGROK} from '../../components/api/Url';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-export default function DetailProducts(props) {
+export default function DetailCategory(props) {
     const [data, setData] = useState([props.data]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -33,8 +33,9 @@ export default function DetailProducts(props) {
 
 
     function clickEventListener(item) {
-        Alert.alert(item.product_name);
+        console.log(item.id);
     }
+
 
     const navigation = useNavigation();
 
@@ -56,12 +57,13 @@ export default function DetailProducts(props) {
                 </View>
             ) :
             (
+
                 <View style={stylesListProducts.container}>
                     <Appbar.Header style={{backgroundColor: 'black'}}>
-                        <Appbar.BackAction onPress={() => navigation.navigate('Product')}/>
+                        <Appbar.BackAction
+                            onPress={() => BackHandler.addEventListener('hardwareBackPress', navigation.goBack())}/>
                         <Appbar.Content title={props.title}/>
                         <Appbar.Action icon="magnify" onPress={() => console.warn('search')}/>
-
                     </Appbar.Header>
                     <FlatList
                         style={stylesListProducts.list}
@@ -76,9 +78,9 @@ export default function DetailProducts(props) {
                             let urlImage = item.product_image;
                             urlImage = urlImage.replace('localhost:8000', NGROK);
                             return (
-                                <TouchableOpacity style={stylesListProducts.card} onPress={() => {
-                                    clickEventListener(item);
-                                }}>
+                                <TouchableOpacity style={stylesListProducts.card} onPress={() =>
+                                    navigation.navigate('DetailProduct', item)
+                                }>
                                     {/*<View style={stylesListProducts.cardHeader}>*/}
                                     {/*    <Image style={stylesListProducts.icon}*/}
                                     {/*           source={{uri: 'https://img.icons8.com/flat_round/64/000000/hearts.png'}}/>*/}

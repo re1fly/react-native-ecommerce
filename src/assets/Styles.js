@@ -141,7 +141,6 @@ export const stylesHome = StyleSheet.create({
         fontWeight: '700',
         fontSize: 20,
         textAlign: 'center',
-        marginTop: 10,
     },
     textWinter: {
         fontWeight: '600',

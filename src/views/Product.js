@@ -14,72 +14,73 @@ import {
     GET_TSHIRTS,
     GET_WOMEN_PRODUCTS,
 } from '../components/api/Url';
-import DetailProducts from './category/DetailProducts';
+import DetailCategory from './category/DetailCategory';
 import {ListGenderProducts} from './category/ListGenderProducts';
+import DetailProduct from './category/DetailProduct';
 
 
 export const DetailMens = () => (
-        <DetailProducts url={GET_MEN_PRODUCTS} title="Men"/>
+        <DetailCategory url={GET_MEN_PRODUCTS} title="Men"/>
     );
 
 export const DetailWomens = () => (
-        <DetailProducts url={GET_WOMEN_PRODUCTS} title="Women"/>
+        <DetailCategory url={GET_WOMEN_PRODUCTS} title="Women"/>
     );
 
 export const DetailKids = () => (
-        <DetailProducts url={GET_KIDS_PRODUCTS} title="Kids"/>
+        <DetailCategory url={GET_KIDS_PRODUCTS} title="Kids"/>
     );
 
 export const DetailTshirts = () => (
-    <DetailProducts url={GET_TSHIRTS} title="Tshirts"/>
+    <DetailCategory url={GET_TSHIRTS} title="Tshirts"/>
 )
 
 export const DetailJerseys = () => (
-    <DetailProducts url={GET_JERSEYS} title="Jerseys"/>
+    <DetailCategory url={GET_JERSEYS} title="Jerseys"/>
 )
 
 export const DetailJackets = () => (
-    <DetailProducts url={GET_JACKETS} title="Jackets"/>
+    <DetailCategory url={GET_JACKETS} title="Jackets"/>
 )
 
 export const DetailSweaters = () => (
-    <DetailProducts url={GET_SWEATERS} title="Sweaters"/>
+    <DetailCategory url={GET_SWEATERS} title="Sweaters"/>
 )
 
 export const DetailHoodies = () => (
-    <DetailProducts url={GET_HOODIES} title="Hoodies"/>
+    <DetailCategory url={GET_HOODIES} title="Hoodies"/>
 )
 
 export const DetailShorts = () => (
-    <DetailProducts url={GET_SHORTS} title="Shorts"/>
+    <DetailCategory url={GET_SHORTS} title="Shorts"/>
 )
 
 export const DetailPants = () => (
-    <DetailProducts url={GET_PANTS} title="Pants"/>
+    <DetailCategory url={GET_PANTS} title="Pants"/>
 )
 
 export const DetailLeggings = () => (
-    <DetailProducts url={GET_LEGGINGS} title="Leggings"/>
+    <DetailCategory url={GET_LEGGINGS} title="Leggings"/>
 )
 
 export const DetailSocks = () => (
-    <DetailProducts url={GET_SOCKS} title="Socks"/>
+    <DetailCategory url={GET_SOCKS} title="Socks"/>
 )
 
 export const DetailCaps = () => (
-    <DetailProducts url={GET_CAPS} title="Caps"/>
+    <DetailCategory url={GET_CAPS} title="Caps"/>
 )
 
 export const DetailBackpacks = () => (
-    <DetailProducts url={GET_BACKPACKS} title="Backpacks"/>
+    <DetailCategory url={GET_BACKPACKS} title="Backpacks"/>
 )
 
 export const DetailSleeves = () => (
-    <DetailProducts url={GET_SLEEVES} title="Sleeves"/>
+    <DetailCategory url={GET_SLEEVES} title="Sleeves"/>
 )
 
 export const DetailBalls = () => (
-    <DetailProducts url={GET_BALLS} title="Balls"/>
+    <DetailCategory url={GET_BALLS} title="Balls"/>
 )
 
 const ProductScreen = ({navigation}) => (
@@ -117,6 +118,7 @@ export function ProductStackScreen() {
             <ProductStack.Screen name="Men" component={DetailMens}/>
             <ProductStack.Screen name="Women" component={DetailWomens}/>
             <ProductStack.Screen name="Kids" component={DetailKids}/>
+            <ProductStack.Screen name="DetailProduct" component ={DetailProduct} />
         </ProductStack.Navigator>
     );
 }
