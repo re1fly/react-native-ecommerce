@@ -11,6 +11,8 @@ import {Shipping} from './detail_cart/Shipping';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useState} from 'react';
 import {Payment} from './detail_cart/Payment';
+import {useDispatch} from 'react-redux';
+import {removeItem} from '../redux/Action';
 
 function CartScreen({navigation}) {
     const [snackIncrease, setSnackIncrease] = useState(false);
@@ -28,6 +30,8 @@ function CartScreen({navigation}) {
 
     const onToggleSnackRemove = () => setSnackRemove(!snackRemove);
     const onDismissSnackRemove = () => setSnackRemove(false);
+
+    const dispatch = useDispatch();
 
     AsyncStorage.getItem('address').then(value => {
         const data = JSON.parse(value);
@@ -86,7 +90,7 @@ function CartScreen({navigation}) {
                                 <Text numberOfLines={1} style={{fontSize: 12}}>Size L</Text>
                                 <Text numberOfLines={1} style={{fontSize: 14, marginTop: 10}}>Rp. 350.000,00</Text>
                                 <View style={{flexDirection: 'row', marginTop: 20}}>
-                                    <TouchableOpacity onPress={onToggleSnackDecrease}
+                                    <TouchableOpacity onPress={() => dispatch(removeItem())}
                                                       style={{
                                                           borderWidth: 0.5,
                                                           borderColor: '#cccccc',

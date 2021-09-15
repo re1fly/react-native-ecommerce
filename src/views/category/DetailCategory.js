@@ -18,14 +18,13 @@ import {Appbar, Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {NGROK} from '../../components/api/Url';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {addItem} from '../../redux/Action';
 
 export default function DetailCategory(props) {
     const [data, setData] = useState([props.data]);
     const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
-    const cartTotal =  useSelector(data => data.items)
 
     useEffect(() => {
         setIsLoading(true);
@@ -109,7 +108,7 @@ export default function DetailCategory(props) {
                                             <Text style={stylesListProducts.category}>{item.category}</Text>
                                             <Text style={stylesListProducts.price}>Rp. {item.price},00</Text>
                                             <TouchableOpacity style={stylesListProducts.cartButton}
-                                                              onPress={() => dispatch(addItem(data))}>
+                                                              onPress={() => dispatch(addItem())}>
                                                 <Text style={stylesListProducts.cartButtonText}>Add to
                                                     Cart</Text>
                                             </TouchableOpacity>

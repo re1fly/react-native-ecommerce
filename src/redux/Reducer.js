@@ -1,7 +1,7 @@
 import {ADD, REMOVE} from './Type';
 
 const initialState = {
-    items:2
+    items:1
 }
 
 export const reducerCart = (state = initialState, action) => {
@@ -12,7 +12,8 @@ export const reducerCart = (state = initialState, action) => {
 
         case REMOVE:
             console.log('remove item')
-            return{...state, items: state.data - 1}
+            return{...state, items: state.items - 1}
         default: return state;
     }
 }
+

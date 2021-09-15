@@ -6,6 +6,8 @@ import {Badge} from 'react-native-elements';
 import {VStack} from 'native-base';
 import {NativeBaseProvider} from 'native-base/src/core/NativeBaseProvider';
 import {stylesDetailProducts} from '../../assets/Styles';
+import {useDispatch} from 'react-redux';
+import {addItem} from '../../redux/Action';
 
 
 export default function DetailProduct({navigation, route}) {
@@ -18,6 +20,7 @@ export default function DetailProduct({navigation, route}) {
     } = route.params;
     const [selected, setSelected] = React.useState(null);
     const size = ['xs', 's', 'm', 'l', 'xl', 'xxl'];
+    const dispatch = useDispatch();
 
     let image = product_image;
     image = image.replace('localhost:8000', NGROK);
@@ -106,7 +109,7 @@ export default function DetailProduct({navigation, route}) {
                 </View>
                 <TouchableOpacity
                     style={stylesDetailProducts.buttonCart}
-                    onPress={() => console.warn('add to cart')}
+                    onPress={() => dispatch(addItem())}
                 >
                     <Text style={stylesDetailProducts.textButtonCart}>
                         Add to Cart

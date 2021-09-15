@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     },
 });
 export default function BottomNavigator() {
-    const cartTotal =  useSelector(data => data.items)
+    const cartTotal =  useSelector(state => state.items)
     return (
         <Tab.Navigator
             initialRouteName={'HomeBar'}
