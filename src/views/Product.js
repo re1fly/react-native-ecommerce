@@ -83,7 +83,7 @@ export const DetailBalls = () => (
     <DetailCategory url={GET_BALLS} title="Balls"/>
 )
 
-const ProductScreen = ({navigation}) => (
+const ProductScreen = ({navigation, props}) => (
     <NativeBaseProvider>
         <ScrollView showsVerticalScrollIndicator={false}>
             <View>

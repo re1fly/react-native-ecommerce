@@ -15,7 +15,7 @@ export const ListGenderProducts = (props) => {
             <Card.Actions style={stylesProducts.ButtonDetail}>
                 <Button icon="arrow-right"
                         color="black"
-                        labelStyle={{fontSize: 14, textTransform: 'capitalize', fontWeight: '700'}}
+                        labelStyle={{fontSize: 14, textTransform: 'capitalize', fontWeight: '700',padding: 0}}
                         onPress={() => navigation.navigate(props.screenName)}
                         contentStyle={{flexDirection: 'row-reverse'}}
                 >

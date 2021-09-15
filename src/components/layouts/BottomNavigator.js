@@ -6,6 +6,8 @@ import HomeStackScreen from '../../views/Home';
 import {ProductStackScreen} from '../../views/Product';
 import {StyleSheet} from 'react-native';
 import Account from '../../views/account/Account';
+import {useSelector} from 'react-redux';
+
 
 
 const Tab = createBottomTabNavigator();
@@ -23,6 +25,7 @@ const styles = StyleSheet.create({
     },
 });
 export default function BottomNavigator() {
+    const cartTotal =  useSelector(data => data.items)
     return (
         <Tab.Navigator
             initialRouteName={'HomeBar'}
@@ -70,7 +73,7 @@ export default function BottomNavigator() {
                 component={CartStackScreen}
                 options={{
                     tabBarLabel: 'Cart',
-                    tabBarBadge: 0,
+                    tabBarBadge: cartTotal,
                     tabBarIcon: ({color, size}) => (
                         <MaterialCommunityIcons name="cart" color={color} size={size}/>
                     ),

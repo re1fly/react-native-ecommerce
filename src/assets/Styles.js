@@ -30,7 +30,7 @@ export const stylesAccount = StyleSheet.create({
         fontSize: 22,
         fontWeight: '600',
         marginBottom: 200,
-        top: -50
+        top: -50,
     },
     loginBtn: {
         width: '70%',
@@ -153,7 +153,7 @@ export const stylesHome = StyleSheet.create({
         fontWeight: '600',
         fontSize: 15,
         paddingHorizontal: 7,
-        marginBottom: 10
+        marginBottom: 10,
     },
 });
 export const stylesProducts = StyleSheet.create({
@@ -295,27 +295,27 @@ export const stylesCart = StyleSheet.create({
 });
 export const stylesShipping = StyleSheet.create({
     paper: {
-        padding: 20
+        padding: 20,
     },
     containerForm: {
         backgroundColor: 'white',
         height: '95%',
-        borderRadius: 20
+        borderRadius: 20,
     },
     containerInput: {
-        padding: 10
+        padding: 10,
     },
     title: {
         fontSize: 18,
         fontWeight: 'bold',
         alignSelf: 'center',
-        marginTop: 5
+        marginTop: 5,
     },
     input: {
         marginVertical: 10,
         fontSize: 14,
         backgroundColor: 'transparent',
-        marginHorizontal: 20
+        marginHorizontal: 20,
     },
     btnSubmit: {
         marginHorizontal: 20,
@@ -323,7 +323,7 @@ export const stylesShipping = StyleSheet.create({
         marginTop: 50,
         borderRadius: 15,
         paddingVertical: 2,
-    }
+    },
 });
 export const stylesListProducts = StyleSheet.create({
     container: {
@@ -422,5 +422,93 @@ export const stylesListProducts = StyleSheet.create({
     icon: {
         height: 20,
         width: 20,
+    },
+});
+export const stylesDetailProducts = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    appbar: {
+        backgroundColor: 'black',
+    },
+    containerImage: {
+        backgroundColor: '#f1f1f1',
+        borderBottomRightRadius: 60,
+        borderBottomLeftRadius: 60,
+        marginBottom: 10,
+        height: 260,
+        alignItems: 'center',
+    },
+    productImage: {
+        width: 250,
+        height: 250,
+        marginTop: 10,
+    },
+    containerDetail: {
+        alignItems: 'center',
+    },
+    productName: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        textTransform: 'capitalize',
+    },
+    textPrice: {
+        fontSize: 28,
+        fontWeight: '600',
+        marginVertical: 10,
+    },
+    textDesc: {
+        textAlign: 'center',
+        paddingHorizontal: 60,
+    },
+    containerSize: {
+        flexDirection: 'row',
+        marginTop: 30,
+    },
+    rowSize: {
+        flexDirection: 'row',
+        flexGrow: 1,
+        flexShrink: 1,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 30,
+    },
+    textSize: {
+        fontSize: 15,
+        fontWeight: 'bold',
+    },
+    containerSizeGuide: {
+        flexDirection: 'row',
+        paddingRight: 5,
+        alignItems: 'center',
+    },
+    textSizeGuide: {
+        fontSize: 12,
+        color: '#8f8f8f',
+    },
+    buttonSize: {
+        marginHorizontal: 8,
+        borderRadius: 15,
+        borderColor: 'black',
+        overflow: 'hidden',
+        paddingHorizontal: 30,
+        paddingVertical: 24,
+        fontWeight: 'bold',
+        textTransform: 'uppercase'
+    },
+    buttonCart: {
+        backgroundColor: 'black',
+        borderRadius: 30,
+        height: 55,
+        marginHorizontal: 75,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 20,
+    },
+    textButtonCart: {
+        color: 'white',
+        fontSize: 13,
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
     },
 });

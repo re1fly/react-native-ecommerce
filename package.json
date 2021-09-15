@@ -32,6 +32,8 @@
     "react-native-vector-icons": "^8.1.0",
     "react-native-webview": "^11.13.0",
     "react-native-youtube-iframe": "^2.1.2",
+    "react-redux": "^7.2.5",
+    "redux": "^4.1.1",
     "rn-tourguide": "^2.7.1",
     "styled-components": "^5.3.1",
     "styled-system": "^5.1.5"

@@ -9,23 +9,22 @@ import {
     ScrollView,
     FlatList,
     ActivityIndicator,
-    BackHandler,
-    AppRegistry,
+    BackHandler, AppRegistry,
 } from 'react-native';
 import axios from 'axios';
 import {stylesListProducts} from '../../assets/Styles';
-import {Appbar, Button} from 'react-native-paper';
+import {Appbar, Button, Modal, Portal, Provider, Snackbar} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {NGROK} from '../../components/api/Url';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {useDispatch, useSelector} from 'react-redux';
-import {addItem} from '../../redux/Action';
 
-export default function DetailCategory(props) {
+// const Product = () => {
+//     AppRegistry.registerComponent('details', () => DetailProducts)
+// };
+
+export default function DetailProducts(props) {
     const [data, setData] = useState([props.data]);
     const [isLoading, setIsLoading] = useState(false);
-    const dispatch = useDispatch();
-    const cartTotal =  useSelector(data => data.items)
 
     useEffect(() => {
         setIsLoading(true);
@@ -36,11 +35,6 @@ export default function DetailCategory(props) {
         });
     }, []);
 
-    BackHandler.addEventListener('hardwareBackPress', function () {
-        navigation.goBack();
-        return true;
-    });
-
 
     function clickEventListener(item) {
         console.log(item.id);
@@ -48,22 +42,12 @@ export default function DetailCategory(props) {
 
 
     const navigation = useNavigation();
+    const navigate = props.nav;
 
-    return isLoading ? (
-            <View>
-                <Appbar.Header style={{backgroundColor: 'black'}}>
-                    <Appbar.BackAction onPress={() => navigation.navigate('Product')}/>
-                    <Appbar.Content title={props.title}/>
-                    <Appbar.Action icon="magnify" onPress={() => console.warn('search')}/>
-                </Appbar.Header>
-                <View style={{alignSelf: 'center', justifyContent: 'center', marginBottom: 100}}>
-                    <ActivityIndicator style={{flex: 1}}
-                                       size="large"
-                                       color="black"
-                                       accessibilityHint="Please Wait"/>
-                </View>
-            </View>
-        ) :
+    return isLoading ? (<ActivityIndicator style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
+                                           size="large"
+                                           color="black"
+                                           accessibilityHint="Please Wait"/>) :
         data == '' ? (
                 <View>
                     <Appbar.Header style={{backgroundColor: 'black'}}>
@@ -71,8 +55,8 @@ export default function DetailCategory(props) {
                         <Appbar.Content title={props.title}/>
                         <Appbar.Action icon="magnify" onPress={() => console.warn('search')}/>
                     </Appbar.Header>
-                    <View style={{justifyContent: 'center', alignItems: 'center', marginVertical: 270}}>
-                        <Button icon="emoticon-sad" color="black" labelStyle={{fontSize: 50}} style={{marginLeft: 20}}/>
+                    <View style={{alignItems: 'center', marginVertical: 270}}>
+                        <Button icon="emoticon-sad" color="black" labelStyle={{fontSize: 50}}/>
                         <Text style={{fontSize: 20, fontWeight: 'bold'}}>Products Not Available</Text>
                     </View>
                 </View>
@@ -81,10 +65,10 @@ export default function DetailCategory(props) {
 
                 <View style={stylesListProducts.container}>
                     <Appbar.Header style={{backgroundColor: 'black'}}>
-                        <Appbar.BackAction
-                            onPress={() => BackHandler.addEventListener('hardwareBackPress', navigation.goBack())}/>
+                        <Appbar.BackAction onPress={() => navigation.navigate('Product')}/>
                         <Appbar.Content title={props.title}/>
                         <Appbar.Action icon="magnify" onPress={() => console.warn('search')}/>
+
                     </Appbar.Header>
                     <FlatList
                         style={stylesListProducts.list}
@@ -99,9 +83,13 @@ export default function DetailCategory(props) {
                             let urlImage = item.product_image;
                             urlImage = urlImage.replace('localhost:8000', NGROK);
                             return (
-                                <TouchableOpacity style={stylesListProducts.card} onPress={() =>
-                                    navigation.navigate('DetailProduct', item)
-                                }>
+                                <TouchableOpacity style={stylesListProducts.card} onPress={() => {
+                                    navigation.navigate('Details');
+                                }}>
+                                    {/*<View style={stylesListProducts.cardHeader}>*/}
+                                    {/*    <Image style={stylesListProducts.icon}*/}
+                                    {/*           source={{uri: 'https://img.icons8.com/flat_round/64/000000/hearts.png'}}/>*/}
+                                    {/*</View>*/}
                                     <Image style={stylesListProducts.userImage} source={{uri: urlImage}}/>
                                     <View style={stylesListProducts.cardFooter}>
                                         <View style={{alignItems: 'center', justifyContent: 'center'}}>
@@ -109,7 +97,7 @@ export default function DetailCategory(props) {
                                             <Text style={stylesListProducts.category}>{item.category}</Text>
                                             <Text style={stylesListProducts.price}>Rp. {item.price},00</Text>
                                             <TouchableOpacity style={stylesListProducts.cartButton}
-                                                              onPress={() => dispatch(addItem(data))}>
+                                                              onPress={() => clickEventListener(item)}>
                                                 <Text style={stylesListProducts.cartButtonText}>Add to
                                                     Cart</Text>
                                             </TouchableOpacity>
