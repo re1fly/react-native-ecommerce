@@ -1,19 +1,22 @@
 import {ADD, REMOVE} from './Type';
 
 const initialState = {
-    items:1
-}
+    item: [],
+};
 
 export const reducerCart = (state = initialState, action) => {
-    switch (action.type){
+    switch (action.type) {
         case ADD:
-            console.log('Add item')
-            return{...state, items:state.items + 1}
+            console.log('Add item');
+            return {...state, item: [...state.item, action.payload]};
 
         case REMOVE:
-            console.log('remove item')
-            return{...state, items: state.items - 1}
-        default: return state;
+            console.log('remove item');
+            console.log(state.item);
+            return {...state, item: state.item.filter((item, index) => item !== action.payload)};
+        default:
+            return state;
     }
-}
+};
+
 

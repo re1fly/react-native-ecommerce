@@ -1,13 +1,13 @@
 import {ADD, REMOVE} from './Type';
 
 
-export const addItem = (items) => ({
+export const addItem = (item) => ({
     type: ADD,
-    product: items
+    payload: item
 
 })
 
-export const removeItem = (items) => ({
+export const removeItem = (item) => ({
     type: REMOVE,
-    product: items
-})
+    payload: item,
+});

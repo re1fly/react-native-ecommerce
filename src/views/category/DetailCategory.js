@@ -45,7 +45,6 @@ export default function DetailCategory(props) {
         console.log(item.id);
     }
 
-
     const navigation = useNavigation();
 
     return isLoading ? (
@@ -108,7 +107,7 @@ export default function DetailCategory(props) {
                                             <Text style={stylesListProducts.category}>{item.category}</Text>
                                             <Text style={stylesListProducts.price}>Rp. {item.price},00</Text>
                                             <TouchableOpacity style={stylesListProducts.cartButton}
-                                                              onPress={() => dispatch(addItem())}>
+                                                              onPress={() => dispatch(addItem(item))}>
                                                 <Text style={stylesListProducts.cartButtonText}>Add to
                                                     Cart</Text>
                                             </TouchableOpacity>
