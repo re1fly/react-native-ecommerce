@@ -5,7 +5,7 @@ import {Text, View} from 'react-native';
 export const Payment = () => {
     return (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Text>Settings screen</Text>
+            <Text>BCA</Text>
         </View>
     );
 

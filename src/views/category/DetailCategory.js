@@ -76,7 +76,6 @@ export default function DetailCategory(props) {
                 </View>
             ) :
             (
-
                 <View style={stylesListProducts.container}>
                     <Appbar.Header style={{backgroundColor: 'black'}}>
                         <Appbar.BackAction
@@ -97,9 +96,7 @@ export default function DetailCategory(props) {
                             let urlImage = item.product_image;
                             urlImage = urlImage.replace('localhost:8000', NGROK);
                             return (
-                                <TouchableOpacity style={stylesListProducts.card} onPress={() =>
-                                    navigation.navigate('DetailProduct', item)
-                                }>
+                                <View style={stylesListProducts.card}>
                                     <Image style={stylesListProducts.userImage} source={{uri: urlImage}}/>
                                     <View style={stylesListProducts.cardFooter}>
                                         <View style={{alignItems: 'center', justifyContent: 'center'}}>
@@ -107,13 +104,14 @@ export default function DetailCategory(props) {
                                             <Text style={stylesListProducts.category}>{item.category}</Text>
                                             <Text style={stylesListProducts.price}>Rp. {item.price},00</Text>
                                             <TouchableOpacity style={stylesListProducts.cartButton}
-                                                              onPress={() => dispatch(addItem(item))}>
-                                                <Text style={stylesListProducts.cartButtonText}>Add to
-                                                    Cart</Text>
+                                                              onPress={() =>
+                                                                  navigation.navigate('DetailProduct', item)
+                                                              }>
+                                                <Text style={stylesListProducts.cartButtonText}>Detail</Text>
                                             </TouchableOpacity>
                                         </View>
                                     </View>
-                                </TouchableOpacity>
+                                </View>
                             );
                         }}/>
                 </View>

@@ -33,7 +33,7 @@ function CartScreen({navigation}) {
     const onDismissSnackRemove = () => setSnackRemove(false);
 
     const dispatch = useDispatch();
-    const cartItem =  useSelector(state => state.item)
+    const cartItem = useSelector(state => state.item);
 
     AsyncStorage.getItem('address').then(value => {
         const data = JSON.parse(value);
@@ -43,14 +43,6 @@ function CartScreen({navigation}) {
     });
 
     return (
-        // <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        //     <Text>Settings screen</Text>
-        //     <Button
-        //         title="Go to Details"
-        //         onPress={() => navigation.navigate('Details')}
-        //     />
-        // </View>
-
         <View style={stylesCart.container}>
             <View style={stylesCart.body}>
                 <Snackbar
@@ -84,54 +76,61 @@ function CartScreen({navigation}) {
                         {cartItem.map(item => {
                             let urlImage = item.product_image;
                             urlImage = urlImage.replace('localhost:8000', NGROK);
-                            return(
-                            <View style={stylesCart.myCart}>
-                                <View styles={stylesCart.containerImageCart}>
-                                    <Image style={stylesCart.imageCart}
-                                           source={{uri: urlImage}}
-                                    />
-                                </View>
-                                <View style={{flexGrow: 1, flexShrink: 1, alignSelf: 'center', marginLeft: 14}}>
-                                    <Text numberOfLines={1} style={{fontSize: 15, fontWeight: 'bold'}}>{item.product_name}</Text>
-                                    <Text numberOfLines={1} style={{fontSize: 12}}>Size L</Text>
-                                    <Text numberOfLines={1} style={{fontSize: 14, marginTop: 10}}>Rp. {item.price},00</Text>
-                                    <View style={{flexDirection: 'row', marginTop: 20}}>
-                                        <TouchableOpacity onPress={() => dispatch(removeItem(item))}
-                                                          style={{
-                                                              borderWidth: 0.5,
-                                                              borderColor: '#cccccc',
-                                                              borderRadius: 30,
-                                                              padding: 3,
-                                                          }}>
-                                            <MaterialIcons name="remove" size={13} color="#88898D"/>
-                                        </TouchableOpacity>
-                                        <Text style={{
-                                            paddingHorizontal: 7,
-                                            paddingTop: 1,
-                                            color: '#A9A8AF',
-                                            fontWeight: '600',
-                                            fontSize: 14,
-                                        }}>1</Text>
-                                        <TouchableOpacity onPress={onToggleSnackIncrease}
-                                                          style={{
-                                                              borderWidth: 0.5,
-                                                              borderColor: '#cccccc',
-                                                              borderRadius: 30,
-                                                              padding: 3,
-                                                          }}>
-                                            <MaterialIcons name="add" size={13} color="#88898D"/>
+                            return (
+                                <View style={stylesCart.myCart} key={item.id}>
+                                    <View styles={stylesCart.containerImageCart}>
+                                        <Image style={stylesCart.imageCart}
+                                               source={{uri: urlImage}}
+                                        />
+                                    </View>
+                                    <View style={{flexGrow: 1, flexShrink: 1, alignSelf: 'center', marginLeft: 14}}>
+                                        <Text numberOfLines={1}
+                                              style={{fontSize: 15, fontWeight: 'bold'}}>{item.product_name}</Text>
+                                        <Text numberOfLines={1} style={{fontSize: 12}}>Size L</Text>
+                                        <Text numberOfLines={1}
+                                              style={{fontSize: 14, marginTop: 10}}>Rp. {item.price},00</Text>
+                                        <View style={{flexDirection: 'row', marginTop: 20}}>
+                                            <TouchableOpacity onPress={onToggleSnackDecrease}
+                                                              style={{
+                                                                  borderWidth: 0.5,
+                                                                  borderColor: '#cccccc',
+                                                                  borderRadius: 30,
+                                                                  padding: 3,
+                                                              }}>
+                                                <MaterialIcons name="remove" size={13} color="#88898D"/>
+                                            </TouchableOpacity>
+                                            <Text style={{
+                                                paddingHorizontal: 7,
+                                                paddingTop: 1,
+                                                color: '#A9A8AF',
+                                                fontWeight: '600',
+                                                fontSize: 14,
+                                            }}>1</Text>
+                                            <TouchableOpacity onPress={onToggleSnackIncrease}
+                                                              style={{
+                                                                  borderWidth: 0.5,
+                                                                  borderColor: '#cccccc',
+                                                                  borderRadius: 30,
+                                                                  padding: 3,
+                                                              }}>
+                                                <MaterialIcons name="add" size={13} color="#88898D"/>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                    <View style={{justifyContent: 'center', alignItems: 'center', width: 60}}>
+                                        <TouchableOpacity
+                                            style={{
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                width: 32,
+                                                height: 32,
+                                            }}
+                                            onPress={() => dispatch(removeItem(item))}>
+                                            <MaterialIcons name="delete-outline" size={25} color="black"/>
                                         </TouchableOpacity>
                                     </View>
                                 </View>
-                                <View style={{justifyContent: 'center', alignItems: 'center', width: 60}}>
-                                    <TouchableOpacity
-                                        style={{justifyContent: 'center', alignItems: 'center', width: 32, height: 32}}
-                                        onPress={onToggleSnackRemove}>
-                                        <MaterialIcons name="delete-outline" size={25} color="black"/>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                            )
+                            );
                         })}
 
 

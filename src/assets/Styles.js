@@ -406,9 +406,9 @@ export const stylesListProducts = StyleSheet.create({
         marginTop: 10,
     },
     cartButton: {
-        marginTop: 5,
-        height: 23,
-        width: 85,
+        marginTop: 10,
+        height: 20,
+        width: 80,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
