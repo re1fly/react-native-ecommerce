@@ -9,7 +9,6 @@ import {store} from './src/redux/Store';
 const DrawerComponent = () => {
     const [active, setActive] = React.useState('');
 
-
     return (
         <Drawer.Section title="Some title">
             <Drawer.Item

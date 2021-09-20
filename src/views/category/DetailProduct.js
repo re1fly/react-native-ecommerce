@@ -6,36 +6,46 @@ import {Badge} from 'react-native-elements';
 import {VStack} from 'native-base';
 import {NativeBaseProvider} from 'native-base/src/core/NativeBaseProvider';
 import {stylesDetailProducts} from '../../assets/Styles';
-import {useDispatch} from 'react-redux';
-import {addItem} from '../../redux/Action';
+import {useDispatch, useSelector} from 'react-redux';
+import {addItem, countItem, exAddItem} from '../../redux/Action';
+import * as cartActions from '../../redux/Reducer'
 
 
 export default function DetailProduct({navigation, route}) {
     const {
         product_name,
+        id,
         gender,
         price,
         product_image,
         sub_category,
     } = route.params;
-    const [selected, setSelected] = React.useState(null);
-    const size = ['xs', 's', 'm', 'l', 'xl', 'xxl'];
+    const [selectedSize, setSelectedSize] = React.useState(null);
+    const size = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
     const dispatch = useDispatch();
 
     let image = product_image;
     image = image.replace('localhost:8000', NGROK);
 
+    const item = {
+        'id': id,
+        'product_name': product_name,
+        'price': price,
+        'product_image': image,
+        'size': selectedSize
+    }
+
     const ButtonSize = () =>
         size.map(item => (
             <TouchableOpacity
                 key={item}
-                onPress={() => setSelected(item)}>
+                onPress={() => setSelectedSize(item)}>
                 <VStack>
                     <Text style={[
                         stylesDetailProducts.buttonSize,
                         {
-                            backgroundColor: item === selected ? 'black' : '#ececec',
-                            color: item === selected ? 'white' : 'black',
+                            backgroundColor: item === selectedSize ? 'black' : '#ececec',
+                            color: item === selectedSize ? 'white' : 'black',
                         },
                     ]}
                     >
@@ -108,8 +118,11 @@ export default function DetailProduct({navigation, route}) {
                     </ScrollView>
                 </View>
                 <TouchableOpacity
-                    style={stylesDetailProducts.buttonCart}
-                    onPress={() => dispatch(addItem())}
+                    style={[stylesDetailProducts.buttonCart, {
+                        backgroundColor: selectedSize === null ? '#ececec' : 'black',
+                    }]}
+                    onPress={() => dispatch(addItem(item))}
+                    disabled={selectedSize == null}
                 >
                     <Text style={stylesDetailProducts.textButtonCart}>
                         Add to Cart

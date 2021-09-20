@@ -9,7 +9,6 @@ import Account from '../../views/account/Account';
 import {useSelector} from 'react-redux';
 
 
-
 const Tab = createBottomTabNavigator();
 
 const styles = StyleSheet.create({
@@ -25,7 +24,19 @@ const styles = StyleSheet.create({
     },
 });
 export default function BottomNavigator() {
-    const cartTotal =  useSelector(state => state.item.length)
+    const quantityItems = useSelector(state => {
+        const totalItems = [];
+        for (const key in state.cart) {
+            totalItems.push({
+                quantity: state.cart[key].quantity,
+            });
+        }
+        return totalItems;
+    });
+    const totalItems = quantityItems.reduce((total, data) => {
+        return total + data.quantity;
+    }, 0);
+
     return (
         <Tab.Navigator
             initialRouteName={'HomeBar'}
@@ -73,7 +84,7 @@ export default function BottomNavigator() {
                 component={CartStackScreen}
                 options={{
                     tabBarLabel: 'Cart',
-                    tabBarBadge: cartTotal,
+                    tabBarBadge: totalItems,
                     tabBarIcon: ({color, size}) => (
                         <MaterialCommunityIcons name="cart" color={color} size={size}/>
                     ),

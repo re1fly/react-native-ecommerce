@@ -494,10 +494,8 @@ export const stylesDetailProducts = StyleSheet.create({
         paddingHorizontal: 30,
         paddingVertical: 24,
         fontWeight: 'bold',
-        textTransform: 'uppercase'
     },
     buttonCart: {
-        backgroundColor: 'black',
         borderRadius: 30,
         height: 55,
         marginHorizontal: 75,

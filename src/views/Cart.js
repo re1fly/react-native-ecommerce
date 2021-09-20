@@ -2,7 +2,6 @@ import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {stylesCart, stylesProfile} from '../assets/Styles';
-import {Icon} from 'react-native-elements';
 import {Button, Divider, List, Snackbar} from 'react-native-paper';
 import {ScrollView} from 'native-base';
 import {NativeBaseProvider} from 'native-base/src/core/NativeBaseProvider';
@@ -12,8 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useState} from 'react';
 import {Payment} from './detail_cart/Payment';
 import {useDispatch, useSelector} from 'react-redux';
-import {removeItem} from '../redux/Action';
-import {NGROK} from '../components/api/Url';
+import {addItem, reduceItem, removeItem} from '../redux/Action';
 
 function CartScreen({navigation}) {
     const [snackIncrease, setSnackIncrease] = useState(false);
@@ -32,8 +30,26 @@ function CartScreen({navigation}) {
     const onToggleSnackRemove = () => setSnackRemove(!snackRemove);
     const onDismissSnackRemove = () => setSnackRemove(false);
 
+    const shippingCost = 30000;
+
     const dispatch = useDispatch();
-    const cartItem = useSelector(state => state.item);
+    const cartItems = useSelector(state => {
+        const cartItem = [];
+        for (const key in state.cart) {
+            cartItem.push({
+                productId: key,
+                productName: state.cart[key].productName,
+                productPrice: state.cart[key].productPrice,
+                productImage: state.cart[key].productImage,
+                quantity: state.cart[key].quantity,
+                productSize: state.cart[key].productSize,
+                sum: state.cart[key].sum,
+            });
+        }
+        return cartItem;
+    });
+    const subTotal = useSelector(state => state.totalAmount);
+    const totalPrice = Number(shippingCost) + Number(subTotal);
 
     AsyncStorage.getItem('address').then(value => {
         const data = JSON.parse(value);
@@ -73,24 +89,29 @@ function CartScreen({navigation}) {
                     <View style={stylesCart.bodyContent}>
                         <MaterialIcons style={stylesCart.iconTitle} name="shopping-cart" size={30} color="#88898D"/>
                         <Text style={stylesCart.textTitle}>My Cart</Text>
-                        {cartItem.map(item => {
-                            let urlImage = item.product_image;
-                            urlImage = urlImage.replace('localhost:8000', NGROK);
+                        {cartItems.map(item => {
+                            const dataMoreItem = {
+                                'id': item.productId,
+                                'product_name': item.productName,
+                                'price': item.productPrice,
+                                'product_image': item.productImage,
+                                'size': item.productSize
+                            }
                             return (
-                                <View style={stylesCart.myCart} key={item.id}>
+                                <View style={stylesCart.myCart} key={item.productId}>
                                     <View styles={stylesCart.containerImageCart}>
                                         <Image style={stylesCart.imageCart}
-                                               source={{uri: urlImage}}
+                                               source={{uri: item.productImage}}
                                         />
                                     </View>
                                     <View style={{flexGrow: 1, flexShrink: 1, alignSelf: 'center', marginLeft: 14}}>
                                         <Text numberOfLines={1}
-                                              style={{fontSize: 15, fontWeight: 'bold'}}>{item.product_name}</Text>
-                                        <Text numberOfLines={1} style={{fontSize: 12}}>Size L</Text>
+                                              style={{fontSize: 15, fontWeight: 'bold'}}>{item.productName}</Text>
+                                        <Text numberOfLines={1} style={{fontSize: 12}}>Size: {item.productSize}</Text>
                                         <Text numberOfLines={1}
-                                              style={{fontSize: 14, marginTop: 10}}>Rp. {item.price},00</Text>
+                                              style={{fontSize: 14, marginTop: 10}}>Rp. {item.sum},00</Text>
                                         <View style={{flexDirection: 'row', marginTop: 20}}>
-                                            <TouchableOpacity onPress={onToggleSnackDecrease}
+                                            <TouchableOpacity onPress={() => dispatch(reduceItem(item.productId))}
                                                               style={{
                                                                   borderWidth: 0.5,
                                                                   borderColor: '#cccccc',
@@ -105,8 +126,8 @@ function CartScreen({navigation}) {
                                                 color: '#A9A8AF',
                                                 fontWeight: '600',
                                                 fontSize: 14,
-                                            }}>1</Text>
-                                            <TouchableOpacity onPress={onToggleSnackIncrease}
+                                            }}>{item.quantity}</Text>
+                                            <TouchableOpacity onPress={() => dispatch(addItem(dataMoreItem))}
                                                               style={{
                                                                   borderWidth: 0.5,
                                                                   borderColor: '#cccccc',
@@ -125,7 +146,7 @@ function CartScreen({navigation}) {
                                                 width: 32,
                                                 height: 32,
                                             }}
-                                            onPress={() => dispatch(removeItem(item))}>
+                                            onPress={() => dispatch(removeItem(item.productId))}>
                                             <MaterialIcons name="delete-outline" size={25} color="black"/>
                                         </TouchableOpacity>
                                     </View>
@@ -178,7 +199,7 @@ function CartScreen({navigation}) {
                             }}>
                                 <Text style={{color: '#8f8f8f'}}>Subtotal</Text>
                                 <View style={{flexDirection: 'row', paddingRight: 5, alignItems: 'center'}}>
-                                    <Text>Rp. 350.000,00</Text>
+                                    <Text>Rp. {subTotal},00</Text>
                                 </View>
                             </View>
                         </View>
@@ -192,7 +213,7 @@ function CartScreen({navigation}) {
                             }}>
                                 <Text style={{color: '#8f8f8f'}}>Shipping Cost</Text>
                                 <View style={{flexDirection: 'row', paddingRight: 5, alignItems: 'center'}}>
-                                    <Text>Rp. 30.000,00</Text>
+                                    <Text>Rp.{shippingCost},00</Text>
                                 </View>
                             </View>
                         </View>
@@ -207,14 +228,15 @@ function CartScreen({navigation}) {
                             }}>
                                 <Text style={{color: '#8f8f8f'}}>Total</Text>
                                 <View style={{flexDirection: 'row', paddingRight: 5, alignItems: 'center'}}>
-                                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>Rp. 380.000,00</Text>
+                                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>Rp. {totalPrice},00</Text>
                                 </View>
                             </View>
                         </View>
                         <Button mode="contained"
                                 color="black"
                                 style={{marginHorizontal: 60, marginVertical: 5, marginTop: 50, borderRadius: 15}}
-                                onPress={() => console.log(cartItem)}
+                                onPress={() => console.log(cartItems)}
+                                disabled={cartItems.length === 0}
                         >
                             CHECKOUT NOW
                         </Button>
@@ -232,6 +254,9 @@ export function CartStackScreen() {
         <NativeBaseProvider>
             <CartStack.Navigator screenOptions={{
                 headerShown: false,
+                contentStyle: {
+                    backgroundColor: 'white',
+                },
             }}>
                 <CartStack.Screen name="Cart" component={CartScreen}/>
                 <CartStack.Screen name="Shipping" component={Shipping}/>

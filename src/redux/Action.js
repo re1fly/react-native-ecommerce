@@ -1,4 +1,4 @@
-import {ADD, REMOVE} from './Type';
+import {ADD, REDUCE, REMOVE} from './Type';
 
 
 export const addItem = (item) => ({
@@ -6,8 +6,14 @@ export const addItem = (item) => ({
     payload: item,
 });
 
-export const removeItem = (item) => ({
-    type: REMOVE,
-    payload: item,
+export const reduceItem = (productId) => ({
+    type: REDUCE,
+    payload: productId,
 });
+
+export const removeItem = (productId) => ({
+    type: REMOVE,
+    payload: productId,
+});
+
 
