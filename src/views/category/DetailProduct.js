@@ -87,7 +87,7 @@ export default function DetailProduct({navigation, route}) {
                     />
 
                     <Text style={stylesDetailProducts.textPrice}>
-                        Rp. {price},00
+                        Rp. {price.toLocaleString()}
                     </Text>
                     <Text style={stylesDetailProducts.textDesc}>
                         NIKE, Inc., together with its subsidiaries, designs, develops, markets, and sells athletic

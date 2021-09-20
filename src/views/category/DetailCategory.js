@@ -102,7 +102,7 @@ export default function DetailCategory(props) {
                                         <View style={{alignItems: 'center', justifyContent: 'center'}}>
                                             <Text style={stylesListProducts.name}>{item.product_name}</Text>
                                             <Text style={stylesListProducts.category}>{item.category}</Text>
-                                            <Text style={stylesListProducts.price}>Rp. {item.price},00</Text>
+                                            <Text style={stylesListProducts.price}>Rp. {item.price.toLocaleString()}</Text>
                                             <TouchableOpacity style={stylesListProducts.cartButton}
                                                               onPress={() =>
                                                                   navigation.navigate('DetailProduct', item)

@@ -86,7 +86,9 @@ export default function Account() {
     }, []);
 
     return (
-        <ProfileStack.Navigator screenOptions={{headerShown: false}}>
+        <ProfileStack.Navigator screenOptions={{headerShown: false, contentStyle: {
+                backgroundColor: '#9ea7b5',
+            },}}>
             {
                 isLogin == null ?
                     (

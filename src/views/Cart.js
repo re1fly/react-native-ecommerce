@@ -33,19 +33,22 @@ function CartScreen({navigation}) {
         setState(data.state);
     });
 
-    const dataCheckout = [{
-        'itemCustomer': cartItems,
-        'shipping': {
-            'street': street,
-            'city': city,
-            'state': state,
-        },
-        'price': {
-            'subTotal': subTotal,
-            'shipping': shippingCost,
-            'totalPrice': totalFinal,
-        },
-    }];
+    const dataCheckout = {
+        cart: [{
+            'item_customer': cartItems,
+            'payment_method': 'DEBIT BCA',
+            'shipping': {
+                'street': street,
+                'city': city,
+                'state': state,
+            },
+            'price': {
+                'sub_total': subTotal,
+                'shipping': shippingCost,
+                'total_price': totalFinal,
+            },
+        }],
+    };
 
     return (
         <View style={stylesCart.container}>
@@ -73,8 +76,14 @@ function CartScreen({navigation}) {
                                     </View>
                                     <View style={{flexGrow: 1, flexShrink: 1, alignSelf: 'center', marginLeft: 14}}>
                                         <Text numberOfLines={1}
-                                              style={{fontSize: 15, fontWeight: 'bold'}}>{item.productName}</Text>
-                                        <Text numberOfLines={1} style={{fontSize: 12}}>Size: {item.size}</Text>
+                                              style={{
+                                                  fontSize: 15,
+                                                  fontWeight: 'bold',
+                                                  textTransform: 'capitalize',
+                                              }}>{item.productName}</Text>
+                                        <Text numberOfLines={1} style={{fontSize: 12}}>Size:
+                                            <Text style={{fontWeight: 'bold'}}>{' ' + item.size}</Text>
+                                        </Text>
                                         <Text numberOfLines={1}
                                               style={{
                                                   fontSize: 14,
