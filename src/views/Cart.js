@@ -14,42 +14,17 @@ import {useDispatch, useSelector} from 'react-redux';
 import {addItem, reduceItem, removeItem} from '../redux/Action';
 
 function CartScreen({navigation}) {
-    const [snackIncrease, setSnackIncrease] = useState(false);
-    const [snackDecrease, setSnackDecrease] = useState(false);
-    const [snackRemove, setSnackRemove] = useState(false);
     const [street, setStreet] = useState();
     const [city, setCity] = useState();
     const [state, setState] = useState();
 
-    const onToggleSnackIncrease = () => setSnackIncrease(!snackIncrease);
-    const onDismissSnackIncrease = () => setSnackIncrease(false);
-
-    const onToggleSnackDecrease = () => setSnackDecrease(!snackDecrease);
-    const onDismissSnackDecrease = () => setSnackDecrease(false);
-
-    const onToggleSnackRemove = () => setSnackRemove(!snackRemove);
-    const onDismissSnackRemove = () => setSnackRemove(false);
-
-    const shippingCost = 30000;
-
     const dispatch = useDispatch();
-    const cartItems = useSelector(state => {
-        const cartItem = [];
-        for (const key in state.cart) {
-            cartItem.push({
-                productId: key,
-                productName: state.cart[key].productName,
-                productPrice: state.cart[key].productPrice,
-                productImage: state.cart[key].productImage,
-                quantity: state.cart[key].quantity,
-                productSize: state.cart[key].productSize,
-                sum: state.cart[key].sum,
-            });
-        }
-        return cartItem;
-    });
-    const subTotal = useSelector(state => state.totalAmount);
-    const totalPrice = Number(shippingCost) + Number(subTotal);
+    const cartItems = useSelector(state => state);
+    const shippingCost = 30000;
+    const subTotal = cartItems.reduce((total, arr) => {
+        return total + arr.price * arr.quantity;
+    }, 0);
+    const totalFinal = subTotal + shippingCost;
 
     AsyncStorage.getItem('address').then(value => {
         const data = JSON.parse(value);
@@ -58,60 +33,55 @@ function CartScreen({navigation}) {
         setState(data.state);
     });
 
+    const dataCheckout = [{
+        'itemCustomer': cartItems,
+        'shipping': {
+            'street': street,
+            'city': city,
+            'state': state,
+        },
+        'price': {
+            'subTotal': subTotal,
+            'shipping': shippingCost,
+            'totalPrice': totalFinal,
+        },
+    }];
+
     return (
         <View style={stylesCart.container}>
             <View style={stylesCart.body}>
-                <Snackbar
-                    visible={snackIncrease}
-                    onDismiss={onDismissSnackIncrease}
-                    duration={1000}
-                    style={{backgroundColor: '#2CBE3E'}}
-                >
-                    Product Added
-                </Snackbar>
-                <Snackbar
-                    visible={snackDecrease}
-                    onDismiss={onDismissSnackDecrease}
-                    duration={1000}
-                    style={{backgroundColor: '#FFC300'}}
-                >
-                    Product Decreased
-                </Snackbar>
-                <Snackbar
-                    visible={snackRemove}
-                    onDismiss={onDismissSnackRemove}
-                    duration={1000}
-                    style={{backgroundColor: '#D30404'}}
-                >
-                    Product Removed
-                </Snackbar>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={stylesCart.bodyContent}>
                         <MaterialIcons style={stylesCart.iconTitle} name="shopping-cart" size={30} color="#88898D"/>
                         <Text style={stylesCart.textTitle}>My Cart</Text>
-                        {cartItems.map(item => {
+                        {cartItems.map((item, index) => {
+                            const totalCostItem = item.price * item.quantity;
                             const dataMoreItem = {
-                                'id': item.productId,
+                                'id': item.id,
                                 'product_name': item.productName,
-                                'price': item.productPrice,
-                                'product_image': item.productImage,
-                                'size': item.productSize
-                            }
+                                'price': item.price,
+                                'product_image': item.image,
+                                'size': item.size,
+                                'quantity': 1,
+                            };
                             return (
-                                <View style={stylesCart.myCart} key={item.productId}>
+                                <View style={stylesCart.myCart} key={index}>
                                     <View styles={stylesCart.containerImageCart}>
                                         <Image style={stylesCart.imageCart}
-                                               source={{uri: item.productImage}}
+                                               source={{uri: item.image}}
                                         />
                                     </View>
                                     <View style={{flexGrow: 1, flexShrink: 1, alignSelf: 'center', marginLeft: 14}}>
                                         <Text numberOfLines={1}
                                               style={{fontSize: 15, fontWeight: 'bold'}}>{item.productName}</Text>
-                                        <Text numberOfLines={1} style={{fontSize: 12}}>Size: {item.productSize}</Text>
+                                        <Text numberOfLines={1} style={{fontSize: 12}}>Size: {item.size}</Text>
                                         <Text numberOfLines={1}
-                                              style={{fontSize: 14, marginTop: 10}}>Rp. {item.sum},00</Text>
+                                              style={{
+                                                  fontSize: 14,
+                                                  marginTop: 10,
+                                              }}>Rp. {totalCostItem.toLocaleString()}</Text>
                                         <View style={{flexDirection: 'row', marginTop: 20}}>
-                                            <TouchableOpacity onPress={() => dispatch(reduceItem(item.productId))}
+                                            <TouchableOpacity onPress={() => dispatch(reduceItem(item))}
                                                               style={{
                                                                   borderWidth: 0.5,
                                                                   borderColor: '#cccccc',
@@ -146,7 +116,7 @@ function CartScreen({navigation}) {
                                                 width: 32,
                                                 height: 32,
                                             }}
-                                            onPress={() => dispatch(removeItem(item.productId))}>
+                                            onPress={() => dispatch(removeItem(item))}>
                                             <MaterialIcons name="delete-outline" size={25} color="black"/>
                                         </TouchableOpacity>
                                     </View>
@@ -199,7 +169,7 @@ function CartScreen({navigation}) {
                             }}>
                                 <Text style={{color: '#8f8f8f'}}>Subtotal</Text>
                                 <View style={{flexDirection: 'row', paddingRight: 5, alignItems: 'center'}}>
-                                    <Text>Rp. {subTotal},00</Text>
+                                    <Text>Rp. {subTotal.toLocaleString()}</Text>
                                 </View>
                             </View>
                         </View>
@@ -213,7 +183,7 @@ function CartScreen({navigation}) {
                             }}>
                                 <Text style={{color: '#8f8f8f'}}>Shipping Cost</Text>
                                 <View style={{flexDirection: 'row', paddingRight: 5, alignItems: 'center'}}>
-                                    <Text>Rp.{shippingCost},00</Text>
+                                    <Text>Rp.{shippingCost.toLocaleString()}</Text>
                                 </View>
                             </View>
                         </View>
@@ -228,14 +198,17 @@ function CartScreen({navigation}) {
                             }}>
                                 <Text style={{color: '#8f8f8f'}}>Total</Text>
                                 <View style={{flexDirection: 'row', paddingRight: 5, alignItems: 'center'}}>
-                                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>Rp. {totalPrice},00</Text>
+                                    <Text style={{
+                                        fontSize: 20,
+                                        fontWeight: 'bold',
+                                    }}>Rp. {totalFinal.toLocaleString()}</Text>
                                 </View>
                             </View>
                         </View>
                         <Button mode="contained"
                                 color="black"
                                 style={{marginHorizontal: 60, marginVertical: 5, marginTop: 50, borderRadius: 15}}
-                                onPress={() => console.log(cartItems)}
+                                onPress={() => console.log(dataCheckout)}
                                 disabled={cartItems.length === 0}
                         >
                             CHECKOUT NOW

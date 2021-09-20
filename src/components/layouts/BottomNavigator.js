@@ -24,16 +24,8 @@ const styles = StyleSheet.create({
     },
 });
 export default function BottomNavigator() {
-    const quantityItems = useSelector(state => {
-        const totalItems = [];
-        for (const key in state.cart) {
-            totalItems.push({
-                quantity: state.cart[key].quantity,
-            });
-        }
-        return totalItems;
-    });
-    const totalItems = quantityItems.reduce((total, data) => {
+    const cartTotal =  useSelector(state => state)
+    const totalItems = cartTotal.reduce((total, data) => {
         return total + data.quantity;
     }, 0);
 

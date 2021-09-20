@@ -32,7 +32,8 @@ export default function DetailProduct({navigation, route}) {
         'product_name': product_name,
         'price': price,
         'product_image': image,
-        'size': selectedSize
+        'size': selectedSize,
+        'quantity': 1
     }
 
     const ButtonSize = () =>
