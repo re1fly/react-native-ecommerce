@@ -1,5 +1,4 @@
-import {ADD, REDUCE, REMOVE} from './Type';
-
+import {ADD, ADD_SHIPPING, REDUCE, REMOVE} from './Type';
 
 export const reducerCart = (state = [], action) => {
     let doesItemExist;
@@ -39,6 +38,34 @@ export const reducerCart = (state = [], action) => {
             });
             return newStateRemove;
 
+        default:
+            return state;
+    }
+};
+
+export const reducerShipping = (state = [], action) => {
+    let itemExist;
+    switch (action.type) {
+        case ADD_SHIPPING:
+            itemExist = false;
+            const newState = state.map((item) => {
+                if (item.id === action.data.id) {
+                    item.name = action.data.name;
+                    item.street = action.data.street;
+                    item.city = action.data.city;
+                    item.state = action.data.state;
+                    item.province = action.data.province;
+                    item.phone = action.data.phone;
+                    item.zip = action.data.zip;
+                    itemExist = true;
+                }
+                return item;
+            });
+
+            if (itemExist) {
+                return newState;
+            }
+            return [...state, {...action.data}];
         default:
             return state;
     }

@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     },
 });
 export default function BottomNavigator() {
-    const cartTotal =  useSelector(state => state)
+    const cartTotal =  useSelector(state => state.cart)
     const totalItems = cartTotal.reduce((total, data) => {
         return total + data.quantity;
     }, 0);

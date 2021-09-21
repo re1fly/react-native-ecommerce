@@ -1,5 +1,6 @@
-export const NGROK = '787e-103-225-151-50.ngrok.io';
-export const BASE_URL = 'http://787e-103-225-151-50.ngrok.io/api/';
+export const NGROK = 'de73-103-225-151-50.ngrok.io';
+export const BASE_URL = 'http://de73-103-225-151-50.ngrok.io/api/';
+export const GET_PROVINCE = 'https://dev.farizdotid.com/api/daerahindonesia/provinsi'
 
 export const REGISTER = BASE_URL + 'signup/';
 export const LOGIN = BASE_URL + 'signin/';

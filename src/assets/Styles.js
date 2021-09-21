@@ -295,7 +295,7 @@ export const stylesCart = StyleSheet.create({
 });
 export const stylesShipping = StyleSheet.create({
     paper: {
-        padding: 20,
+        padding: 10,
     },
     containerForm: {
         backgroundColor: 'white',
@@ -309,7 +309,6 @@ export const stylesShipping = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         alignSelf: 'center',
-        marginTop: 5,
     },
     input: {
         marginVertical: 10,
@@ -319,8 +318,8 @@ export const stylesShipping = StyleSheet.create({
     },
     btnSubmit: {
         marginHorizontal: 20,
-        marginVertical: 5,
-        marginTop: 50,
+        marginBottom: 10,
+        marginTop: 40,
         borderRadius: 15,
         paddingVertical: 2,
     },

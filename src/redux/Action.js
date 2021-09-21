@@ -1,4 +1,4 @@
-import {ADD, REDUCE, REMOVE} from './Type';
+import {ADD, ADD_SHIPPING, REDUCE, REMOVE} from './Type';
 
 
 export const addItem = (item) => ({
@@ -29,5 +29,20 @@ export const removeItem = (item) => ({
         quantity: item.quantity,
     },
 });
+
+export const addShipping = (dataShipping) => ({
+    type: ADD_SHIPPING,
+    data: {
+        id: dataShipping.id,
+        name: dataShipping.name,
+        street: dataShipping.street,
+        city: dataShipping.city,
+        state: dataShipping.state,
+        province: dataShipping.province,
+        phone: dataShipping.phone,
+        zip: dataShipping.zip
+    }
+})
+
 
 

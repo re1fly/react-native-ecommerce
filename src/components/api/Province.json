@@ -1,0 +1,174 @@
+{
+  "province": [
+    {
+      "id": 11,
+      "name": "Aceh",
+      "timezone": "WIB"
+    },
+    {
+      "id": 12,
+      "name": "Sumatera Utara",
+      "timezone": "WIB"
+    },
+    {
+      "id": 13,
+      "name": "Sumatera Barat",
+      "timezone": "WIB"
+    },
+    {
+      "id": 14,
+      "name": "Riau",
+      "timezone": "WIB"
+    },
+    {
+      "id": 15,
+      "name": "Jambi",
+      "timezone": "WIB"
+    },
+    {
+      "id": 16,
+      "name": "Sumatera Selatan",
+      "timezone": "WIB"
+    },
+    {
+      "id": 17,
+      "name": "Bengkulu",
+      "timezone": "WIB"
+    },
+    {
+      "id": 18,
+      "name": "Lampung",
+      "timezone": "WIB"
+    },
+    {
+      "id": 19,
+      "name": "Kepulauan Bangka Belitung",
+      "timezone": "WIB"
+    },
+    {
+      "id": 21,
+      "name": "Kepulauan Riau",
+      "timezone": "WIB"
+    },
+    {
+      "id": 31,
+      "name": "Dki Jakarta",
+      "timezone": "WIB"
+    },
+    {
+      "id": 32,
+      "name": "Jawa Barat",
+      "timezone": "WIB"
+    },
+    {
+      "id": 33,
+      "name": "Jawa Tengah",
+      "timezone": "WIB"
+    },
+    {
+      "id": 34,
+      "name": "Di Yogyakarta",
+      "timezone": "WIB"
+    },
+    {
+      "id": 35,
+      "name": "Jawa Timur",
+      "timezone": "WIB"
+    },
+    {
+      "id": 36,
+      "name": "Banten",
+      "timezone": "WIB"
+    },
+    {
+      "id": 51,
+      "name": "Bali",
+      "timezone": "WITA"
+    },
+    {
+      "id": 52,
+      "name": "Nusa Tenggara Barat",
+      "timezone": "WITA"
+    },
+    {
+      "id": 53,
+      "name": "Nusa Tenggara Timur",
+      "timezone": "WITA"
+    },
+    {
+      "id": 61,
+      "name": "Kalimantan Barat",
+      "timezone": "WIB"
+    },
+    {
+      "id": 62,
+      "name": "Kalimantan Tengah",
+      "timezone": "WIB"
+    },
+    {
+      "id": 63,
+      "name": "Kalimantan Selatan",
+      "timezone": "WITA"
+    },
+    {
+      "id": 64,
+      "name": "Kalimantan Timur",
+      "timezone": "WITA"
+    },
+    {
+      "id": 65,
+      "name": "Kalimantan Utara",
+      "timezone": "WITA"
+    },
+    {
+      "id": 71,
+      "name": "Sulawesi Utara",
+      "timezone": "WITA"
+    },
+    {
+      "id": 72,
+      "name": "Sulawesi Tengah",
+      "timezone": "WITA"
+    },
+    {
+      "id": 73,
+      "name": "Sulawesi Selatan",
+      "timezone": "WITA"
+    },
+    {
+      "id": 74,
+      "name": "Sulawesi Tenggara",
+      "timezone": "WITA"
+    },
+    {
+      "id": 75,
+      "name": "Gorontalo",
+      "timezone": "WITA"
+    },
+    {
+      "id": 76,
+      "name": "Sulawesi Barat",
+      "timezone": "WITA"
+    },
+    {
+      "id": 81,
+      "name": "Maluku",
+      "timezone": "WIT"
+    },
+    {
+      "id": 82,
+      "name": "Maluku Utara",
+      "timezone": "WIT"
+    },
+    {
+      "id": 91,
+      "name": "Papua Barat",
+      "timezone": "WIT"
+    },
+    {
+      "id": 94,
+      "name": "Papua",
+      "timezone": "WIT"
+    }
+  ]
+}
