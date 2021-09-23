@@ -1,4 +1,4 @@
-import {ADD, ADD_SHIPPING, REDUCE, REMOVE} from './Type';
+import {ADD, ADD_SHIPPING, REDUCE, REMOVE, RESET_CART, RESET_SHIPPING} from './Type';
 
 
 export const addItem = (item) => ({
@@ -30,6 +30,10 @@ export const removeItem = (item) => ({
     },
 });
 
+export const resetCart = () => ({
+    type: RESET_CART,
+});
+
 export const addShipping = (dataShipping) => ({
     type: ADD_SHIPPING,
     data: {
@@ -40,9 +44,13 @@ export const addShipping = (dataShipping) => ({
         state: dataShipping.state,
         province: dataShipping.province,
         phone: dataShipping.phone,
-        zip: dataShipping.zip
-    }
-})
+        zip: dataShipping.zip,
+    },
+});
+
+export const resetShipping = () => ({
+    type: RESET_SHIPPING,
+});
 
 
 

@@ -50,7 +50,6 @@ export const Shipping = () => {
         'phone': phone,
         'zip': zip,
     };
-    console.log(dataProvince)
 
     return (
         <View>
@@ -102,12 +101,11 @@ export const Shipping = () => {
                             />
                             <VStack alignItems="center" space={2}>
                                 <Select
-                                    variant="styled"
+                                    variant="underlined"
                                     placeholder="Province"
                                     selectedValue={province}
-                                    _placeholder={{color: 'blue', fontSize: 8}}
-                                    _selectedItem={{color: 'white'}}
-                                    minWidth={310}
+                                    color="black"
+                                    minWidth={317}
                                     onValueChange={(itemValue: string) => setProvince(itemValue)}
                                 >
                                     {[].concat(dataProvince.province)

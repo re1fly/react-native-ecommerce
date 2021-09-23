@@ -92,30 +92,6 @@ const HomeScreen = ({navigation}) => {
         <NativeBaseProvider>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={stylesHome.homeContainer}>
-                    {/*<TouchableOpacity onPress={() => start()}>*/}
-                    {/*    <Text>START THE TUTORIAL!</Text>*/}
-                    {/*</TouchableOpacity>*/}
-                    {/*<SearchBar*/}
-                    {/*    inputStyle={{backgroundColor: '#f1f1f1'}}*/}
-                    {/*    containerStyle={{*/}
-                    {/*        backgroundColor: 'white',*/}
-                    {/*        marginRight: 60,*/}
-                    {/*        marginLeft: 60,*/}
-                    {/*        marginTop: 20,*/}
-                    {/*        marginBottom: 12,*/}
-                    {/*        padding: 0,*/}
-                    {/*        borderRadius: 10,*/}
-                    {/*        borderBottomColor: 'transparent',*/}
-                    {/*        borderTopColor: 'transparent',*/}
-                    {/*    }}*/}
-                    {/*    leftIconContainerStyle={{backgroundColor: '#f1f1f1'}}*/}
-                    {/*    inputContainerStyle={{backgroundColor: '#f1f1f1'}}*/}
-                    {/*    lightTheme={true}*/}
-                    {/*    placeholder="Search Products..."*/}
-                    {/*    onChangeText={updateSearch}*/}
-                    {/*    value={search}*/}
-                    {/*    round={true}*/}
-                    {/*/>*/}
                     <Image style={{width: 130, height: 90, alignSelf: 'center'}} alt="logo"
                            source={require('../assets/images/logo.png')}/>
                     <TourGuideZone

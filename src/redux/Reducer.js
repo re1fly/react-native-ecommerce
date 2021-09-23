@@ -1,4 +1,4 @@
-import {ADD, ADD_SHIPPING, REDUCE, REMOVE} from './Type';
+import {ADD, ADD_SHIPPING, REDUCE, REMOVE, RESET_CART, RESET_SHIPPING} from './Type';
 
 export const reducerCart = (state = [], action) => {
     let doesItemExist;
@@ -16,7 +16,6 @@ export const reducerCart = (state = [], action) => {
             if (doesItemExist) {
                 return newState;
             }
-            console.log(state);
 
             return [...state, {...action.payload, quantity: 1}];
 
@@ -37,6 +36,9 @@ export const reducerCart = (state = [], action) => {
                 return true;
             });
             return newStateRemove;
+
+        case RESET_CART:
+            return [];
 
         default:
             return state;
@@ -66,6 +68,10 @@ export const reducerShipping = (state = [], action) => {
                 return newState;
             }
             return [...state, {...action.data}];
+
+        case RESET_SHIPPING:
+            return [];
+
         default:
             return state;
     }

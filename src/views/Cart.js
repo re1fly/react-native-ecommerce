@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
-import {stylesCart, stylesProfile} from '../assets/Styles';
-import {Button, Divider, List, Snackbar} from 'react-native-paper';
+import {Alert, Image, Text, TouchableOpacity, View} from 'react-native';
+import {stylesCart, stylesLoginRegister, stylesProfile} from '../assets/Styles';
+import {ActivityIndicator, Button, Divider, List, Snackbar} from 'react-native-paper';
 import {ScrollView} from 'native-base';
 import {NativeBaseProvider} from 'native-base/src/core/NativeBaseProvider';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -11,13 +11,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect, useState} from 'react';
 import {Payment} from './detail_cart/Payment';
 import {useDispatch, useSelector} from 'react-redux';
-import {addItem, reduceItem, removeItem} from '../redux/Action';
+import {addItem, reduceItem, removeItem, resetCart, resetShipping} from '../redux/Action';
 import ProvinceList from '../components/api/Province.json';
+import {SUBMIT_TRANSACTION} from '../components/api/Url';
+import axios from 'axios';
 
 function CartScreen({navigation}) {
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.cart);
     const shippingAddress = useSelector(state => state.shipping);
+    const [isLoading, setIsLoading] = useState(false);
     let shippingCost;
 
     const provinceShipping = ProvinceList.province;
@@ -44,16 +47,67 @@ function CartScreen({navigation}) {
     const totalFinal = subTotal + shippingCost;
 
     const dataCheckout = {
-        cart: {
-            'item_customer': cartItems,
-            'payment_method': 'DEBIT BCA',
-            'shipping': shippingAddress[0],
-            'price': {
-                'sub_total': subTotal,
-                'shipping': shippingCost,
-                'total_price': totalFinal,
-            },
+        customer_id: 1,
+        item_customer: cartItems,
+        payment_method: 'Cash On Delivery',
+        shipping_address: shippingAddress[0],
+        price: {
+            'sub_total': subTotal,
+            'shipping': shippingCost,
+            'total_price': totalFinal,
         },
+    };
+
+    const submitTransaction = () => {
+        setIsLoading(true);
+        const currentdate = new Date();
+        const orderId = 'SZ' +
+            +currentdate.getFullYear()
+            + (currentdate.getMonth() + 1)
+            + currentdate.getDate()
+            + currentdate.getHours()
+            + currentdate.getMinutes()
+            + currentdate.getSeconds()
+            + JSON.stringify(dataCheckout.customer_id);
+
+        const formData = new FormData();
+        formData.append('order_id', orderId);
+        formData.append('customer_id', JSON.stringify(dataCheckout.customer_id));
+        formData.append('item_customer', JSON.stringify(dataCheckout.item_customer));
+        formData.append('shipping_address', JSON.stringify(dataCheckout.shipping_address));
+        formData.append('payment_method', dataCheckout.payment_method);
+        formData.append('price', JSON.stringify(dataCheckout.price));
+
+        axios.post(SUBMIT_TRANSACTION, formData, {
+            'headers':
+                {
+                    Accept: 'application/json',
+                    'Content-Type': 'multipart/form-data',
+                },
+        }).then(response => {
+            setIsLoading(false);
+            if (response.data.success === true) {
+                dispatch(resetCart());
+                dispatch(resetShipping());
+                Alert.alert(
+                    'Checkout Success !',
+                    response.data.message,
+                    [
+                        {text: 'OK'},
+                    ],
+                );
+            } else {
+                setIsLoading(false);
+                Alert.alert(
+                    'Checkout Failed !',
+                    'Check your cart',
+                    [
+                        {text: 'OK'},
+                    ],
+                );
+            }
+        });
+
     };
 
     return (
@@ -238,14 +292,31 @@ function CartScreen({navigation}) {
                                 </View>
                             </View>
                         </View>
-                        <Button mode="contained"
-                                color="black"
-                                style={{marginHorizontal: 60, marginVertical: 5, marginTop: 50, borderRadius: 15}}
-                                onPress={() => console.log(dataCheckout)}
-                                disabled={cartItems.length === 0}
+                        <TouchableOpacity
+                            style={{
+                                width: '65%',
+                                marginHorizontal: 60,
+                                borderRadius: 25,
+                                height: 45,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                marginTop: 50,
+                                marginVertical: 5,
+                                backgroundColor: cartItems.length == 0 || shippingAddress == 0 ? '#ececec' : 'black',
+                            }}
+                            onPress={submitTransaction}
+                            disabled={cartItems.length === 0 || shippingAddress === 0}
                         >
-                            CHECKOUT NOW
-                        </Button>
+                            <Text style={{
+                                color: 'white',
+                                fontSize: 14,
+                                fontWeight: 'bold',
+                                textTransform: 'uppercase',
+                            }}>
+                                {isLoading == true ?
+                                    <ActivityIndicator animating={true} color="white"/> : 'CHECKOUT NOW'}
+                            </Text>
+                        </TouchableOpacity>
                     </View>
                 </ScrollView>
             </View>

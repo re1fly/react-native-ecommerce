@@ -1,9 +1,10 @@
-export const NGROK = 'de73-103-225-151-50.ngrok.io';
-export const BASE_URL = 'http://de73-103-225-151-50.ngrok.io/api/';
-export const GET_PROVINCE = 'https://dev.farizdotid.com/api/daerahindonesia/provinsi'
+export const NGROK = '6dbd-103-225-151-50.ngrok.io';
+export const BASE_URL = 'http://6dbd-103-225-151-50.ngrok.io/api/';
 
 export const REGISTER = BASE_URL + 'signup/';
 export const LOGIN = BASE_URL + 'signin/';
+export const SUBMIT_TRANSACTION = BASE_URL + 'create-transaction';
+
 
 export const GET_WOMEN_PRODUCTS = BASE_URL + 'women-clothes';
 export const GET_WOMEN_NEW_ARRIVALS = BASE_URL + 'women-new-arrivals';
