@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {ADD, ADD_SHIPPING, REDUCE, REMOVE, RESET_CART, RESET_SHIPPING} from './Type';
 
 

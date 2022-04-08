@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {CartStackScreen} from '../../views/Cart';
-import HomeStackScreen from '../../views/Home';
-import {ProductStackScreen} from '../../views/Product';
+import {CartStackScreen} from '../../views/cart/Cart';
+import HomeStackScreen from '../../views/home/Home';
+import {ProductStackScreen} from '../../views/products/Product';
 import {StyleSheet} from 'react-native';
 import Account from '../../views/account/Account';
 import {useSelector} from 'react-redux';

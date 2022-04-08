@@ -13,10 +13,10 @@ import {
     GET_MEN_PRODUCTS, GET_PANTS, GET_SHORTS, GET_SLEEVES, GET_SOCKS, GET_SWEATERS,
     GET_TSHIRTS,
     GET_WOMEN_PRODUCTS,
-} from '../components/api/Url';
-import DetailCategory from './category/DetailCategory';
-import {ListGenderProducts} from './category/ListGenderProducts';
-import DetailProduct from './category/DetailProduct';
+} from '../../components/api/Url';
+import DetailCategory from './DetailCategory';
+import {ListGenderProducts} from './ListGenderProducts';
+import DetailProduct from './DetailProduct';
 
 
 export const DetailMens = () => (

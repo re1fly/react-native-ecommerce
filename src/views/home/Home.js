@@ -5,21 +5,25 @@ import * as React from 'react';
 import {useCallback, useEffect, useState} from 'react';
 import {SearchBar} from 'react-native-elements';
 import {NativeBaseProvider} from 'native-base/src/core/NativeBaseProvider';
-import HomeCarousel from '../components/carousels/HomeCarousel';
-import {stylesHome} from '../assets/Styles';
+import HomeCarousel from '../../components/carousels/HomeCarousel';
+import {stylesHome} from '../../assets/Styles';
 import {useNavigation} from '@react-navigation/native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 import {
-    DetailBackpacks, DetailBalls,
+    DetailBackpacks,
+    DetailBalls,
     DetailCaps,
     DetailHoodies,
     DetailJackets,
-    DetailJerseys, DetailLeggings,
+    DetailJerseys,
+    DetailLeggings,
     DetailPants,
-    DetailShorts, DetailSleeves, DetailSocks,
+    DetailShorts,
+    DetailSleeves,
+    DetailSocks,
     DetailSweaters,
     DetailTshirts,
-} from './Product';
+} from '../products/Product';
 import {
     TourGuideProvider,
     TourGuideZone,
@@ -93,7 +97,7 @@ const HomeScreen = ({navigation}) => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={stylesHome.homeContainer}>
                     <Image style={{width: 130, height: 90, alignSelf: 'center'}} alt="logo"
-                           source={require('../assets/images/logo.png')}/>
+                           source={require('../../assets/images/logo.png')}/>
                     <TourGuideZone
                         zone={1}
                         shape={'rectangle_and_keep'}
@@ -117,43 +121,43 @@ const HomeScreen = ({navigation}) => {
                                 >
                                     <ItemThumbnail urlCategory="Tshirt"
                                                    categoryName="Tshirt"
-                                                   categoryImage={require('../assets/images/thumbnail/tshirt.jpg')}/>
+                                                   categoryImage={require('../../assets/images/thumbnail/tshirt.jpg')}/>
                                     <ItemThumbnail urlCategory="Jersey"
                                                    categoryName="Jersey"
-                                                   categoryImage={require('../assets/images/thumbnail/jersey.jpg')}/>
+                                                   categoryImage={require('../../assets/images/thumbnail/jersey.jpg')}/>
                                     <ItemThumbnail urlCategory="Jacket"
                                                    categoryName="Jacket"
-                                                   categoryImage={require('../assets/images/thumbnail/jacket.jpg')}/>
+                                                   categoryImage={require('../../assets/images/thumbnail/jacket.jpg')}/>
                                     <ItemThumbnail urlCategory="Sweater"
                                                    categoryName="Sweater"
-                                                   categoryImage={require('../assets/images/thumbnail/sweater.jpg')}/>
+                                                   categoryImage={require('../../assets/images/thumbnail/sweater.jpg')}/>
                                     <ItemThumbnail urlCategory="Hoodie"
                                                    categoryName="Hoodie"
-                                                   categoryImage={require('../assets/images/thumbnail/hoodie.jpg')}/>
+                                                   categoryImage={require('../../assets/images/thumbnail/hoodie.jpg')}/>
                                     <ItemThumbnail urlCategory="Shorts"
                                                    categoryName="Shorts"
-                                                   categoryImage={require('../assets/images/thumbnail/shorts.jpg')}/>
+                                                   categoryImage={require('../../assets/images/thumbnail/shorts.jpg')}/>
                                     <ItemThumbnail urlCategory="Pants"
                                                    categoryName="Pants"
-                                                   categoryImage={require('../assets/images/thumbnail/pants.jpg')}/>
+                                                   categoryImage={require('../../assets/images/thumbnail/pants.jpg')}/>
                                     <ItemThumbnail urlCategory="Legging"
                                                    categoryName="legging"
-                                                   categoryImage={require('../assets/images/thumbnail/legging.jpg')}/>
+                                                   categoryImage={require('../../assets/images/thumbnail/legging.jpg')}/>
                                     <ItemThumbnail urlCategory="Socks"
                                                    categoryName="Socks"
-                                                   categoryImage={require('../assets/images/thumbnail/socks.jpg')}/>
+                                                   categoryImage={require('../../assets/images/thumbnail/socks.jpg')}/>
                                     <ItemThumbnail urlCategory="Cap"
                                                    categoryName="Cap"
-                                                   categoryImage={require('../assets/images/thumbnail/cap.jpg')}/>
+                                                   categoryImage={require('../../assets/images/thumbnail/cap.jpg')}/>
                                     <ItemThumbnail urlCategory="Backpack"
                                                    categoryName="Backpack"
-                                                   categoryImage={require('../assets/images/thumbnail/backpack.jpg')}/>
+                                                   categoryImage={require('../../assets/images/thumbnail/backpack.jpg')}/>
                                     <ItemThumbnail urlCategory="Sleeve"
                                                    categoryName="Sleeve"
-                                                   categoryImage={require('../assets/images/thumbnail/sleeve.jpg')}/>
+                                                   categoryImage={require('../../assets/images/thumbnail/sleeve.jpg')}/>
                                     <ItemThumbnail urlCategory="Ball"
                                                    categoryName="Ball"
-                                                   categoryImage={require('../assets/images/thumbnail/ball.jpg')}/>
+                                                   categoryImage={require('../../assets/images/thumbnail/ball.jpg')}/>
                                 </ScrollView>
                             </View>
                         </View>

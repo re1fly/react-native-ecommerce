@@ -1,19 +1,19 @@
 import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Alert, Image, Text, TouchableOpacity, View} from 'react-native';
-import {stylesCart, stylesLoginRegister, stylesProfile} from '../assets/Styles';
+import {stylesCart, stylesProfile} from '../../assets/Styles';
 import {ActivityIndicator, Button, Divider, List, Snackbar} from 'react-native-paper';
 import {ScrollView} from 'native-base';
 import {NativeBaseProvider} from 'native-base/src/core/NativeBaseProvider';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {Shipping} from './detail_cart/Shipping';
+import {Shipping} from './Shipping';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect, useState} from 'react';
-import {Payment} from './detail_cart/Payment';
+import {Payment} from './Payment';
 import {useDispatch, useSelector} from 'react-redux';
-import {addItem, reduceItem, removeItem, resetCart, resetShipping} from '../redux/Action';
-import ProvinceList from '../components/api/Province.json';
-import {SUBMIT_TRANSACTION} from '../components/api/Url';
+import {addItem, reduceItem, removeItem, resetCart, resetShipping} from '../../redux/Action';
+import ProvinceList from '../../components/api/Province.json';
+import {SUBMIT_TRANSACTION} from '../../components/api/Url';
 import axios from 'axios';
 
 function CartScreen({navigation}) {

@@ -7,9 +7,7 @@ import {VStack} from 'native-base';
 import {NativeBaseProvider} from 'native-base/src/core/NativeBaseProvider';
 import {stylesDetailProducts} from '../../assets/Styles';
 import {useDispatch, useSelector} from 'react-redux';
-import {addItem, countItem, exAddItem} from '../../redux/Action';
-import * as cartActions from '../../redux/Reducer'
-
+import {addItem} from '../../redux/Action';
 
 export default function DetailProduct({navigation, route}) {
     const {
